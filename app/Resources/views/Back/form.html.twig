@@ -1,0 +1,107 @@
+{% macro file(class,label,from,required) %}
+    <div class="{{class}}">
+        <div class="form-group">
+            <label class="control-label">
+                {{label}} {% if required==true %}<span class="symbol required"></span>{% endif %}
+            </label>
+            <div class="fileupload fileupload-new" data-provides="fileupload">
+                <div class="input-group">
+                    <div class="form-control uneditable-input">
+                        <i class="fa fa-file fileupload-exists"></i>
+                        <span class="fileupload-preview"></span>
+                    </div>
+                    <div class="input-group-btn">
+                        <div class="btn btn-light-grey btn-file">
+                            <span class="fileupload-new"><i class="fa fa-folder-open-o"></i> Select file</span>
+                            <span class="fileupload-exists"><i class="fa fa-folder-open-o"></i> Change</span>
+                            {{ form_widget(from) | raw  }}
+                            {{ form_errors(from) | raw  }}
+
+                        </div>
+                        <a href="#" class="btn btn-light-grey fileupload-exists" data-dismiss="fileupload">
+                            <i class="fa fa-times"></i> Remove
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+{% macro read_only(class,label,from,required) %}
+    <div class="{{class}}">
+        <div class="form-group">
+            <label class="control-label">
+                {{label}} {% if required==true %}<span class="symbol required"></span>{% endif %}
+            </label>
+            {{ form_widget(from, { 'attr':{'readonly':'readonly'} }) | raw  }}
+            {{ form_errors(from) | raw  }}
+        </div>
+    </div>
+{% endmacro %}
+{% macro input(class,label,from,required) %}
+    <div class="{{class}}">
+        <div class="form-group">
+            {% if label is not null %}
+                <label class="control-label">
+                    {{label|raw}} {% if required==true %}<span class="symbol required"></span>{% endif %}
+                </label>
+            {% endif %}
+            {{ form_widget(from) | raw  }}
+            {{ form_errors(from) | raw  }}
+        </div>
+    </div>
+{% endmacro %}
+{% macro select2(class,label,from,required) %}
+    <div class="{{class}}">
+        <div class="form-group">
+            {% if label is not null %}
+                <label class="control-label">
+                    {{label}} {% if required==true %}<span class="symbol required"></span>{% endif %}
+                </label>
+            {% endif %}
+            {{ form_widget(from, {'attr': {'class': 'search-select'}}) }}
+            {{ form_errors(from) | raw  }}
+        </div>
+    </div>
+{% endmacro %}
+{% macro submit(label) %}
+    <hr>
+    <div class="row">
+        <div class="col-md-8">
+            <p>
+                <span class="symbol required"></span>Champs obligatoires
+            </p>
+        </div>
+        <div class="col-md-4">
+            <button class="btn btn-green btn-block" type="submit">
+                {{ label }} <i class="fa fa-arrow-circle-right"></i>
+            </button>
+        </div>
+    </div>
+{% endmacro %}
+{% macro formPhoto(form,images) %}
+    {% import ":Back:macros.html.twig" as macros %}
+    {% import _self as formulaire %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form action="{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}" {{ form_enctype(form) }}  method="post" role="form" id="form">
+                        {{ form_widget(form._token) }}
+                        <div class="row">
+                            {{ formulaire.file("col-md-4","Photo",form.file,true) }}
+                            {{ formulaire.input("col-md-3","Type",form.type,true) }}
+                            {{ formulaire.input("col-md-3","Ordre",form.ordre,true) }}
+                        </div>
+                        {{ formulaire.submit("Ajouter") }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        {% for image in images %}
+            {{ macros.albumPhoto(image) }}
+        {% endfor %}
+    </div>  
+{% endmacro %}

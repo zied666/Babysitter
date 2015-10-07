@@ -1,0 +1,23 @@
+<div class="navbar-content">
+    <div class="main-navigation navbar-collapse collapse">
+        <div class="navigation-toggler">
+            <i class="clip-chevron-left"></i>
+            <i class="clip-chevron-right"></i>
+        </div>
+        <ul class="main-navigation-menu sub-menu">
+            <li {% if app.request.get('_route')=='tableaubord' %} class="active open"{% endif %}>
+                <a href="{{ path("tableaubord") }}"><i class="clip-home-3"></i>
+                    <span class="title"> Tableau de bord </span>{% if app.request.get('_route')=='tableaubord' %}<span class="selected"></span>{% endif %}
+                </a>
+            </li>
+            {% include ':Back/menu:frontoffice.html.twig' %}
+            {% include ':Back/menu:administration.html.twig' %}
+            {% include ':Back/menu:commercial.html.twig' %}
+            {% include ':Back/menu:hoteltunisie.html.twig' %}
+            {% include ':Back/menu:voyageorganise.html.twig' %}
+            {% include ':Back/menu:programme.html.twig' %}
+            {% include ':Back/menu:bienetre.html.twig' %}
+            {% include ':Back/menu:billetterie_maritime.html.twig' %}
+        </ul>
+    </div>
+</div>
