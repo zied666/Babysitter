@@ -4,49 +4,41 @@
             <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
                 <span class="clip-list-2"></span>
             </button>
-            <a class="navbar-brand" href="{{ path('tableaubord') }}">
-                OS <i class="clip-paperplane"></i> TRAVEL
-            </a>
+            <a class="navbar-brand" href="{{ path('back_administration_homepage') }}"> Baby
+                <i class="clip-calendar"></i> Sitter </a>
         </div>
         <div class="navbar-tools">
             <ul class="nav navbar-right">
-		{{ render(controller('BackBilletterieMaritimeBundle:Maritime:notification')) }}
-		{{ render(controller('BackBilletterieMaritimeBundle:Billetterie:notification')) }}
-		{{ render(controller('BackProgrammeBundle:Reservation:notification')) }}
-		{{ render(controller('BackVoyageOrganiseBundle:Reservation:notification')) }}
-		{{ render(controller('BackHotelTunisieBundle:Reservation:notification')) }}
-		<li class="dropdown current-user">
-		    <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
-			<img src="{{ asset("back-assets/images/avatar-1-small.jpg") }}" class="circle-img" alt="">
-			<span class="username">{{app.user.username }}</span>
-			<i class="clip-chevron-down"></i>
-		    </a>
-		    <ul class="dropdown-menu">
-			<li>
-			    <a href="{{ path('fos_user_profile_show') }}">
-				<i class="clip-user-2"></i>
-				&nbsp;Mon profile
-			    </a>
-			</li>
-			<li>
-			    <a href="{{ path('fos_user_profile_edit') }}">
-				<i class="clip-calendar"></i>
-				&nbsp;Modifier mon profile
-			    </a>
-			<li>
-			    <a href="{{ path('fos_user_change_password') }}">
-				<i class="clip-bubble-4"></i>
-				&nbsp;Modifier mot de passe
-			    </a>
-			</li>
-			<li class="divider"></li>
-			<li>
-			    <a href="{{ path('fos_user_security_logout') }}">
-				<i class="clip-exit"></i>
-				&nbsp;Déconnexion </a>
-			</li>
-		    </ul>
-		</li>
+                {#{{ render(controller('BackBilletterieMaritimeBundle:Maritime:notification')) }}#}
+                {#{{ render(controller('BackBilletterieMaritimeBundle:Billetterie:notification')) }}#}
+                {#{{ render(controller('BackProgrammeBundle:Reservation:notification')) }}#}
+                {#{{ render(controller('BackVoyageOrganiseBundle:Reservation:notification')) }}#}
+                {#{{ render(controller('BackHotelTunisieBundle:Reservation:notification')) }}#}
+                <li class="dropdown current-user">
+                    <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
+                        <img src="{{ asset("back-assets/images/avatar-1-small.jpg") }}" class="circle-img" alt="">
+                        <span class="username">{{ app.user.username }}</span> <i class="clip-chevron-down"></i> </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{{ path('fos_user_profile_show') }}"> <i class="clip-user-2"></i> &nbsp;My profil
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fos_user_profile_edit') }}"> <i class="clip-calendar"></i> &nbsp;Edit my
+                                profile
+                            </a>
+                        <li>
+                            <a href="{{ path('fos_user_change_password') }}"> <i class="clip-bubble-4"></i> &nbsp;Edit
+                                my password
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="{{ path('fos_user_security_logout') }}"> <i class="clip-exit"></i> &nbsp;Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

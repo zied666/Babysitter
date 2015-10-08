@@ -5,19 +5,19 @@
             <i class="clip-chevron-right"></i>
         </div>
         <ul class="main-navigation-menu sub-menu">
-            <li {% if app.request.get('_route')=='tableaubord' %} class="active open"{% endif %}>
-                <a href="{{ path("tableaubord") }}"><i class="clip-home-3"></i>
-                    <span class="title"> Tableau de bord </span>{% if app.request.get('_route')=='tableaubord' %}<span class="selected"></span>{% endif %}
+            <li {% if app.request.get('_route')=='back_administration_homepage' %} class="active open"{% endif %}>
+                <a href="{{ path("back_administration_homepage") }}"><i class="clip-home-3"></i>
+                    <span class="title"> Dashboard </span>{% if app.request.get('_route')=='back_administration_homepage' %}<span class="selected"></span>{% endif %}
                 </a>
             </li>
-            {% include ':Back/menu:frontoffice.html.twig' %}
-            {% include ':Back/menu:administration.html.twig' %}
-            {% include ':Back/menu:commercial.html.twig' %}
-            {% include ':Back/menu:hoteltunisie.html.twig' %}
-            {% include ':Back/menu:voyageorganise.html.twig' %}
-            {% include ':Back/menu:programme.html.twig' %}
-            {% include ':Back/menu:bienetre.html.twig' %}
-            {% include ':Back/menu:billetterie_maritime.html.twig' %}
+            {#{% include ':Back/menu:frontoffice.html.twig' %}#}
+            {#{% include ':Back/menu:administration.html.twig' %}#}
+            {#{% include ':Back/menu:commercial.html.twig' %}#}
+            {#{% include ':Back/menu:hoteltunisie.html.twig' %}#}
+            {#{% include ':Back/menu:voyageorganise.html.twig' %}#}
+            {#{% include ':Back/menu:programme.html.twig' %}#}
+            {#{% include ':Back/menu:bienetre.html.twig' %}#}
+            {#{% include ':Back/menu:billetterie_maritime.html.twig' %}#}
         </ul>
     </div>
 </div>
