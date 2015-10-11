@@ -1,3 +1,7 @@
+back_administration:
+    resource: "@BackAdministrationBundle/Resources/config/routing/administration.yml"
+    prefix:   /administration
+
 back_administration_homepage:
     path:     /
     defaults: { _controller: BackAdministrationBundle:Default:index }

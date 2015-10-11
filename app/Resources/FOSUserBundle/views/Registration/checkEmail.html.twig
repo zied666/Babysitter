@@ -1,0 +1,18 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    <section id="content" class="gray-area">
+        <div class="container">
+            {% trans_default_domain 'FOSUserBundle' %}
+            <div class="row">
+                <div id="main" class="col-sms-6 col-sm-8 col-md-12">
+                    <div class="booking-section travelo-box">
+                        <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock fos_user_content %}

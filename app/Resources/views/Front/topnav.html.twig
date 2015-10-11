@@ -1,29 +1,31 @@
 <div class="topnav hidden-xs">
     <div class="container">
         <ul class="quick-menu pull-left">
-            <li><a>Bienvenue sur Flam Travel Services</a></li>
+            <li><a>Welcome to BabySitter</a></li>
         </ul>
         <ul class="quick-menu pull-right">
             {% if app.security.token is null or not is_granted('ROLE_USER') %}
-                {#<li><a href="{{ path('fos_user_security_login') }}">Se connecter</a></li>#}
-                {#<li><a href="{{ path('fos_user_registration_register') }}">S'inscrire</a></li>#}
+                <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
             {% else %}
-                <li class="ribbon currency">
-                    <a href="javascript:void(0)">
-                        {{ app.user }}
-                        {% if app.user.client.amicale is defined and app.user.client.amicale is not null %}
-                            - {{ app.user.client.amicale }}
-                        {% endif %}
-                    </a>
-                    <ul class="menu mini">
-                        {% if is_granted('ROLE_ADMIN') %}
-                            {#<li><a target="_blank" href="{{ path('tableaubord') }}">Back Office</a></li>#}
-                        {% endif %}
-                        {#<li><a href="{{ path('fos_user_profile_edit') }}">Modifier email</a></li>#}
-                        {#<li><a href="{{ path('fos_user_change_password') }}">Modifier mot de passe</a></li>#}
-                        {#<li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>#}
-                    </ul>
-                </li>
+                <li><a>Hi {{ app.user }} </a></li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li><a target="_blank" href="{{ path('back_administration_homepage') }}">BackOffice</a></li>
+                {% endif %}
+                <li><a href="{{ path('fos_user_security_logout') }}">Logout </a></li>
+                {#<li class="ribbon currency">#}
+                    {#<a href="javascript:void(0)">#}
+                        {#{{ app.user }}#}
+                    {#</a>#}
+                    {#<ul class="menu mini">#}
+                        {#{% if is_granted('ROLE_ADMIN') %}#}
+                            {#<li><a target="_blank" href="{{ path('back_administration_homepage') }}">BackOffice</a></li>#}
+                        {#{% endif %}#}
+                        {#<li><a href="{{ path('fos_user_profile_edit') }}">Edite profil</a></li>#}
+                        {#<li><a href="{{ path('fos_user_change_password') }}">Edit password</a></li>#}
+                        {#<li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>#}
+                    {#</ul>#}
+                {#</li>#}
             {% endif %}
         </ul>
     </div>

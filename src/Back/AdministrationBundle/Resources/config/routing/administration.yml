@@ -1,0 +1,6 @@
+back_administration_admins:
+    path:     /admins/{id}
+    defaults: { _controller: BackAdministrationBundle:Administration:admins,id:null }
+back_administration_admins_enable:
+    path:     /admins/{id}/enable
+    defaults: { _controller: BackAdministrationBundle:Administration:adminsEnable }
