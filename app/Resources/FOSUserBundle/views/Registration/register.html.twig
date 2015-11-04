@@ -15,13 +15,18 @@
                             <h2>{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</h2>
                             {{ form_widget(form._token) }}
                             {#<div class="row">#}
-                                {#{{ formulaire.input("col-md-4","Nom & prénom",form.client.nomPrenom,true) }}#}
-                                {#{{ formulaire.input("col-md-2","Tel 1",form.client.tel1,true) }}#}
-                                {#{{ formulaire.input("col-md-2","Tel 2",form.client.tel2,true) }}#}
+                            {#{{ formulaire.input("col-md-4","Nom & prénom",form.client.nomPrenom,true) }}#}
+                            {#{{ formulaire.input("col-md-2","Tel 1",form.client.tel1,true) }}#}
+                            {#{{ formulaire.input("col-md-2","Tel 2",form.client.tel2,true) }}#}
                             {#</div>#}
                             {#<div class="row">#}
-                                {#{{ formulaire.input("col-md-8","Addresse",form.client.adresse,true) }}#}
+                            {#{{ formulaire.input("col-md-8","Addresse",form.client.adresse,true) }}#}
                             {#</div>#}
+                            <div class="row">
+                                {{ formulaire.input("col-md-4","First Name",form.firstName,true) }}
+                                {{ formulaire.input("col-md-4","Last Name",form.lastName,true) }}
+                                {{ formulaire.input("col-md-4",null,form.roles,true) }}
+                            </div>
                             <div class="row">
                                 {{ formulaire.input("col-md-4","Username",form.username,true) }}
                                 {{ formulaire.input("col-md-4","Email",form.email,true) }}
@@ -29,8 +34,8 @@
                             <div class="row">
                                 {{ formulaire.input("col-md-4","",form.plainPassword,true) }}
                             </div>
-                            <div class="form-group row">
-                                <div class="col-sm-6 col-md-5">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-4">
                                     <button type="submit" id="_submit" name="_submit" class="full-width btn-large">{{ 'registration.submit'|trans }}</button>
                                 </div>
                             </div>
@@ -40,4 +45,4 @@
             </div>
         </div>
     </section>
-{% endblock  %}
+{% endblock %}

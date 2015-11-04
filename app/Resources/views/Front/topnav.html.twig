@@ -12,6 +12,12 @@
                 {% if is_granted('ROLE_ADMIN') %}
                     <li><a target="_blank" href="{{ path('back_administration_homepage') }}">BackOffice</a></li>
                 {% endif %}
+                {% if is_granted('ROLE_PARRENT') %}
+                    <li><a target="_blank" href="{{ path('back_administration_homepage') }}">PARRENT</a></li>
+                {% endif %}
+                {% if is_granted('ROLE_BABYSITTER') %}
+                    <li><a target="_blank" href="{{ path('Front_BabySitter_Profile_myprofile') }}">BABYSITTER</a></li>
+                {% endif %}
                 <li><a href="{{ path('fos_user_security_logout') }}">Logout </a></li>
                 {#<li class="ribbon currency">#}
                     {#<a href="javascript:void(0)">#}

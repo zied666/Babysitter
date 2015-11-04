@@ -1,3 +1,7 @@
 front_homepage:
     path:     /
     defaults: { _controller: FrontGeneralBundle:Default:homePage }
+
+Front_BabySitter_Profile:
+    resource: "@FrontGeneralBundle/Resources/config/routing/BabySitter.yml"
+    prefix:   /baby_sitter_space

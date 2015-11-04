@@ -1,0 +1,3 @@
+Front_BabySitter_Profile_myprofile:
+    path:     /MyProfile
+    defaults: { _controller: FrontGeneralBundle:ProfileBabySitter:profile }

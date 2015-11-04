@@ -33,6 +33,11 @@ class User extends BaseUser
      */
     private $lastName;
 
+    /**
+     * @ORM\OneToOne(targetEntity="BabySitter", inversedBy="user")
+     */
+    protected $babysitter;
+
     public function __construct()
     {
         parent::__construct();
@@ -90,5 +95,29 @@ class User extends BaseUser
     public function __toString()
     {
         return $this->firstName.' '.$this->lastName;
+    }
+
+    /**
+     * Set babysitter
+     *
+     * @param \Back\UserBundle\Entity\BabySitter $babysitter
+     *
+     * @return User
+     */
+    public function setBabysitter(\Back\UserBundle\Entity\BabySitter $babysitter = null)
+    {
+        $this->babysitter = $babysitter;
+
+        return $this;
+    }
+
+    /**
+     * Get babysitter
+     *
+     * @return \Back\UserBundle\Entity\BabySitter
+     */
+    public function getBabysitter()
+    {
+        return $this->babysitter;
     }
 }
