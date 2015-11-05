@@ -16,7 +16,10 @@ class ProfileBabySitterController extends Controller
         if(!is_null($user->getBabySitter()))
             $babysitter=$user->getBabySitter();
         else
+        {
             $babysitter=new BabySitter();
+            $babysitter->setLastName($user->getLastName())->setFirstName($user->getFirstName());
+        }
         $form=$this->createForm(new BabySitterType(),$babysitter);
         if($this->getRequest()->isMethod('POST'))
         {
@@ -31,7 +34,8 @@ class ProfileBabySitterController extends Controller
             }
         }
         return $this->render('FrontGeneralBundle:ProfileBabySitter:MyProfile.html.twig',array(
-            'form'=>$form->createView()
+            'form'=>$form->createView(),
+            'babysitter'=>$babysitter
         ));
     }
 }

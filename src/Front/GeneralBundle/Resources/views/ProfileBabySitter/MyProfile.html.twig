@@ -11,23 +11,61 @@
                 <div class="booking-section travelo-box">
                     {% include ':Front:alert.html.twig' %}
                     <div class="person-information">
-                        <h3 class="section-title">Information Personnelle</h3>
-                        <hr>
                         {{ form_start(form) }}
-                        {#<h4>Client :</h4>#}
-                        {#<div class="row">#}
-                            {#{{ formulaire.input("col-md-4","Nom & prénom ",form.client.nomPrenom,true) }}#}
-                            {#{{ formulaire.input("col-md-4","Tel 1",form.client.tel1,true) }}#}
-                            {#{{ formulaire.input("col-md-4","Tel 2",form.client.tel2,true) }}#}
-                        {#</div>#}
-                        {#<div class="row">#}
-                            {#{{ formulaire.input("col-md-12","Adresse",form.client.adresse,true) }}#}
-                        {#</div>#}
+                        <h3 class="section-title">Personal information</h3>
+                        <hr>
+                        <div class="row">
+                            {{ formulaire.input("col-md-2","Gender",form.gender,true) }}
+                            {{ formulaire.input("col-md-3","First Name",form.firstName,true) }}
+                            {{ formulaire.input("col-md-3","Last Name",form.lastName,true) }}
+                            {{ formulaire.input("col-md-3","Phone number",form.phoneNumber,true) }}
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img class="middle-item" src="{% if babysitter.path is null %}https://placeholdit.imgix.net/~text?txtsize=20&txt=No%20Picture&w=80&h=80{% else %}{{ asset(babysitter.assetPath) }}{% endif %}" style="width: 80px;height: 80px"/> </a>
+                            </div>
+                            {{ formulaire.input("col-md-3","Picture",form.file,true) }}
+                            {{ formulaire.input("col-md-3","Religion",form.religion,true) }}
+                            {{ formulaire.input("col-md-3","Birthday",form.birthday,true) }}
+                        </div>
+                        <hr><h3 class="section-title">About Me</h3>
+                        <hr>
+                        <div class="row">
+                            {{ formulaire.input("col-md-12",null,form.shortDescription,true) }}
+                        </div>
+                        <hr><h3 class="section-title">Location</h3>
+                        <hr>
+                        <div class="row">
+                            {{ formulaire.input("col-md-4","city",form.city,true) }}
+                            {{ formulaire.input("col-md-4","Near To",form.near,true) }}
+                            {{ formulaire.input("col-md-3","How Many KM",form.howManyKM,true) }}
+                        </div>
+                        <div class="row">
+                            {{ formulaire.input("col-md-12","Adress",form.address,true) }}
+                        </div>
+                        <hr><h3 class="section-title">More Informations</h3>
+                        <hr>
+                        <div class="row">
+                            {{ formulaire.select2("col-md-12","Languages",form.languages,true) }}
+                        </div>
+                        <div class="row">
+                            {{ formulaire.input("col-md-4","Years Experiance",form.yearsExperiance,true) }}
+                            {{ formulaire.input("col-md-4","N° of kids able to carry ",form.kidsAbleCarry,true) }}
+                            {{ formulaire.input("col-md-4","Education",form.education,true) }}
+                        </div>
+                        <div class="row">
+                            {{ formulaire.input("col-md-12",null,form.pets,true) }}
+                            {{ formulaire.input("col-md-12",null,form.smoker,true) }}
+                            {{ formulaire.input("col-md-12",null,form.alcoholic,true) }}
+                            {{ formulaire.input("col-md-12",null,form.provideSickCare,true) }}
+                            {{ formulaire.input("col-md-12",null,form.specialNeeds,true) }}
+                            {{ formulaire.input("col-md-12",null,form.homeWorkHelp,true) }}
+                        </div>
                         <div class="row">
                             <div class="col-md-8"></div>
                             <div class="col-md-4">
                                 <button class="btn btn-primary btn-block" type="submit">
-                                    Validation <i class="fa fa-arrow-circle-right"></i>
+                                    Update my profile <i class="fa fa-arrow-circle-right"></i>
                                 </button>
                             </div>
                         </div>

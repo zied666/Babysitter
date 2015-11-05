@@ -3,12 +3,14 @@
 namespace Back\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * BabySitter
  *
  * @ORM\Table(name="b_babysitter")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
 class BabySitter
 {
@@ -24,9 +26,44 @@ class BabySitter
     /**
      * @var string
      *
+     * @ORM\Column(name="first_name", type="string", length=255)
+     */
+    private $firstName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="last_name", type="string", length=255)
+     */
+    private $lastName;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="address", type="string", length=255)
      */
     private $address;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="near", type="string", length=255)
+     */
+    private $near;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", length=255)
+     */
+    private $city;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="howManyKM", type="integer")
+     */
+    private $howManyKM;
 
     /**
      * @var string
@@ -125,6 +162,145 @@ class BabySitter
      * @ORM\Column(name="education", type="string", length=255)
      */
     private $education;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="religion", type="string", length=255)
+     */
+    private $religion;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\COlumn(name="updated_at",type="datetime", nullable=true)
+     */
+    private $updateAt;
+
+    /**
+     * @ORM\Column(type="string",length=255, nullable=true)
+     */
+    public $path;
+
+    /**
+     * @Assert\Image()
+     */
+    public $file;
+
+    public function getUploadRootDir()
+    {
+        return __dir__ . '/../../../../web/uploads/BabySitter';
+    }
+
+    public function getAbsolutePath()
+    {
+        return NULL === $this->path ? NULL : $this->getUploadRootDir() . '/' . $this->path;
+    }
+
+    public function getAssetPath()
+    {
+        return 'uploads/BabySitter/' . $this->path;
+    }
+
+    /**
+     * @ORM\PostLoad()
+     */
+    public function postLoad()
+    {
+        $this->updateAt = new \DateTime();
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        $this->tempFile = $this->getAbsolutePath();
+        $this->oldFile = $this->path;
+        $this->updateAt = new \DateTime();
+        if(NULL !== $this->file)
+            $this->path = sha1(uniqid(mt_rand(),TRUE)) . '.' . $this->file->guessExtension();
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if(NULL !== $this->file){
+            $this->file->move($this->getUploadRootDir(),$this->path);
+            unset($this->file);
+            if($this->oldFile != NULL && file_exists($this->tempFile))
+                unlink($this->tempFile);
+        }
+    }
+
+    /**
+     * @ORM\PreRemove()
+     */
+    public function preRemoveUpload()
+    {
+        $this->tempFile = $this->getAbsolutePath();
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if(file_exists($this->tempFile))
+            unlink($this->tempFile);
+    }
+
+    /**
+     * Set firstName
+     *
+     * @param string $firstName
+     *
+     * @return User
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Get firstName
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * Set lastName
+     *
+     * @param string $lastName
+     *
+     * @return User
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Get lastName
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
 
 
     /**
@@ -525,5 +701,149 @@ class BabySitter
     public function getLanguages()
     {
         return $this->languages;
+    }
+
+    /**
+     * Set religion
+     *
+     * @param string $religion
+     *
+     * @return BabySitter
+     */
+    public function setReligion($religion)
+    {
+        $this->religion = $religion;
+
+        return $this;
+    }
+
+    /**
+     * Get religion
+     *
+     * @return string
+     */
+    public function getReligion()
+    {
+        return $this->religion;
+    }
+
+    /**
+     * Set path
+     *
+     * @param string $path
+     *
+     * @return BabySitter
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * Get path
+     *
+     * @return string
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    /**
+     * Set updateAt
+     *
+     * @param \DateTime $updateAt
+     *
+     * @return BabySitter
+     */
+    public function setUpdateAt($updateAt)
+    {
+        $this->updateAt = $updateAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updateAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdateAt()
+    {
+        return $this->updateAt;
+    }
+
+    /**
+     * Set near
+     *
+     * @param string $near
+     *
+     * @return BabySitter
+     */
+    public function setNear($near)
+    {
+        $this->near = $near;
+
+        return $this;
+    }
+
+    /**
+     * Get near
+     *
+     * @return string
+     */
+    public function getNear()
+    {
+        return $this->near;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     *
+     * @return BabySitter
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set howManyKM
+     *
+     * @param integer $howManyKM
+     *
+     * @return BabySitter
+     */
+    public function setHowManyKM($howManyKM)
+    {
+        $this->howManyKM = $howManyKM;
+
+        return $this;
+    }
+
+    /**
+     * Get howManyKM
+     *
+     * @return integer
+     */
+    public function getHowManyKM()
+    {
+        return $this->howManyKM;
     }
 }

@@ -4,11 +4,19 @@
             <li><a>Welcome to BabySitter</a></li>
         </ul>
         <ul class="quick-menu pull-right">
+            {# Zied !!!! dont forgot header menu mobile #}
             {% if app.security.token is null or not is_granted('ROLE_USER') %}
                 <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
                 <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
             {% else %}
-                <li><a>Hi {{ app.user }} </a></li>
+                <li><a> </a></li>
+                <li class="ribbon">
+                    <a href="#">Hi {{ app.user }}</a>
+                    <ul class="menu mini">
+                        <li {% if app.request.get('_route')=='fos_user_profile_edit' %}class="active"{% endif %}><a href="{{ path('fos_user_profile_edit') }}"> <i class="clip-calendar"></i> &nbsp;Edit username or email</a>
+                        <li {% if app.request.get('_route')=='fos_user_change_password' %}class="active"{% endif %}><a href="{{ path('fos_user_change_password') }}"> <i class="clip-bubble-4"></i> &nbsp;Edit my password</a></li>
+                    </ul>
+                </li>
                 {% if is_granted('ROLE_ADMIN') %}
                     <li><a target="_blank" href="{{ path('back_administration_homepage') }}">BackOffice</a></li>
                 {% endif %}
@@ -16,22 +24,14 @@
                     <li><a target="_blank" href="{{ path('back_administration_homepage') }}">PARRENT</a></li>
                 {% endif %}
                 {% if is_granted('ROLE_BABYSITTER') %}
-                    <li><a target="_blank" href="{{ path('Front_BabySitter_Profile_myprofile') }}">BABYSITTER</a></li>
+                    <li class="ribbon">
+                        <a href="#">BabySitter Space</a>
+                        <ul class="menu mini">
+                            <li {% if app.request.get('_route')=='Front_BabySitter_Profile_myprofile' %}class="active"{% endif %}><a href="{{ path('Front_BabySitter_Profile_myprofile') }}">My Profile</a></li>
+                        </ul>
+                    </li>
                 {% endif %}
                 <li><a href="{{ path('fos_user_security_logout') }}">Logout </a></li>
-                {#<li class="ribbon currency">#}
-                    {#<a href="javascript:void(0)">#}
-                        {#{{ app.user }}#}
-                    {#</a>#}
-                    {#<ul class="menu mini">#}
-                        {#{% if is_granted('ROLE_ADMIN') %}#}
-                            {#<li><a target="_blank" href="{{ path('back_administration_homepage') }}">BackOffice</a></li>#}
-                        {#{% endif %}#}
-                        {#<li><a href="{{ path('fos_user_profile_edit') }}">Edite profil</a></li>#}
-                        {#<li><a href="{{ path('fos_user_change_password') }}">Edit password</a></li>#}
-                        {#<li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>#}
-                    {#</ul>#}
-                {#</li>#}
             {% endif %}
         </ul>
     </div>
