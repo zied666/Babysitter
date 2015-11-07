@@ -16,7 +16,7 @@ class AdministrationController extends Controller
             $user = new User();
         else
             $user = $em->find('BackUserBundle:User', $id);
-        $users=$em->getRepository('BackUserBundle:User')->findAll();
+        $users=$em->getRepository('BackUserBundle:User')->findByRole(array('ROLE_ADMIN','ROLE_SUPER_ADMIN'));
         if (!is_null($id))
             $form = $this->createForm(New AdminType(), $user, array('validation_groups' => array('Profile')))->remove('plainPassword');
         else

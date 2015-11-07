@@ -171,6 +171,34 @@ class BabySitter
     private $religion;
 
     /**
+     * @var string
+     * @Assert\Url()
+     * @ORM\Column(name="facebook", type="string", length=255,nullable=true)
+     */
+    private $facebook;
+
+    /**
+     * @var string
+     * @Assert\Url()
+     * @ORM\Column(name="linkedIn", type="string", length=255,nullable=true)
+     */
+    private $linkedIn;
+
+    /**
+     * @var string
+     * @Assert\Url()
+     * @ORM\Column(name="googlePlus", type="string", length=255,nullable=true)
+     */
+    private $googlePlus;
+
+    /**
+     * @var string
+     * @Assert\Url()
+     * @ORM\Column(name="twitter", type="string", length=255,nullable=true)
+     */
+    private $twitter;
+
+    /**
      * @var \DateTime
      *
      * @ORM\COlumn(name="updated_at",type="datetime", nullable=true)
@@ -773,5 +801,77 @@ class BabySitter
     public function getUpdateAt()
     {
         return $this->updateAt;
+    }
+
+    /**
+     * Set near
+     *
+     * @param string $near
+     *
+     * @return BabySitter
+     */
+    public function setNear($near)
+    {
+        $this->near = $near;
+
+        return $this;
+    }
+
+    /**
+     * Get near
+     *
+     * @return string
+     */
+    public function getNear()
+    {
+        return $this->near;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     *
+     * @return BabySitter
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set howManyKM
+     *
+     * @param integer $howManyKM
+     *
+     * @return BabySitter
+     */
+    public function setHowManyKM($howManyKM)
+    {
+        $this->howManyKM = $howManyKM;
+
+        return $this;
+    }
+
+    /**
+     * Get howManyKM
+     *
+     * @return integer
+     */
+    public function getHowManyKM()
+    {
+        return $this->howManyKM;
     }
 }

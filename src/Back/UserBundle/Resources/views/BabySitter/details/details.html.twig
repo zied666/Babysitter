@@ -1,0 +1,120 @@
+{% extends 'BackUserBundle:BabySitter:liste.html.twig' %}
+{% block title %}{{ user }}{% endblock %}
+{% block topbody %}
+    {{ parent() }}
+    <li>{{ user }}</li>
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="tabbable">
+                {% include 'BackUserBundle:BabySitter/details:menu.html.twig' %}
+                <div class="tab-content">
+                    <div class="tab-pane in active">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6">
+                                <div class="user-left">
+                                    <div class="center">
+                                        <h4>{{ user }}</h4>
+                                        <div class="fileupload fileupload-new" data-provides="fileupload">
+                                            <div class="user-image">
+                                                {%   if user.babysitter is null or user.babysitter.path is null %}
+                                                    <div class="fileupload-new thumbnail"><img src="https://placeholdit.imgix.net/~text?txtsize=20&txt={{ user }}&w=150&h=150" alt=""></div>
+                                                {% else %}
+                                                    <div class="fileupload-new thumbnail"><img src="{{ asset(user.babysitter.assetPath) }}" width="150px" height="150px" alt=""></div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <p>
+                                            {% if user.babysitter is not null and user.babysitter.twitter is not null %}
+                                                <a class="btn btn-twitter btn-sm btn-squared" href="{{ user.babysitter.twitter }}" target="_blank"><i class="fa fa-twitter"></i></a>
+                                            {% endif %}
+                                            {% if user.babysitter is not null and user.babysitter.linkedIn is not  null %}
+                                                <a class="btn btn-linkedin btn-sm btn-squared" href="{{ user.babysitter.linkedIn }}" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                            {% endif %}
+                                            {% if user.babysitter is not null and user.babysitter.googlePlus is not  null %}
+                                                <a class="btn btn-google-plus btn-sm btn-squared" href="{{ user.babysitter.googlePlus }}" target="_blank"><i class="fa fa-google-plus"></i></a>
+                                            {% endif %}
+                                            {% if user.babysitter is not null and user.babysitter.facebook is not  null %}
+                                                <a class="btn btn-facebook btn-sm btn-squared" href="{{ user.babysitter.facebook }}" target="_blank"><i class="fa fa-facebook"></i></a>
+                                            {% endif %}
+                                        </p>
+                                        <hr>
+                                    </div>
+                                    <table class="table table-condensed table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th colspan="3">Contact Information</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr><td>First & last name:</td><td>{{ user }}</td></tr>
+                                        <tr><td>Email:</td><td>{{ user.email }}</td></tr>
+                                        <tr><td>UserName:</td><td>{{ user.username }}</td></tr>
+                                        {% if user.babysitter is not null %}
+                                            <tr><td>Gender:</td><td>{{ user.babysitter.gender }}</td></tr>
+                                            <tr><td>Phone number:</td><td>{{ user.babysitter.phoneNumber }}</td></tr>
+                                            <tr><td>Birthday:</td><td>{{ user.babysitter.birthday|date('d/m/Y') }}</td></tr>
+                                            <tr><td>Religion:</td><td>{{ user.babysitter.religion }}</td></tr>
+                                            <tr><td>Languages:</td><td>{{ user.babysitter.languages|join(',') }}</td></tr>
+                                        {% endif %}
+                                        </tbody>
+                                    </table>
+                                    {% if user.babysitter is not null %}
+                                        <table class="table table-condensed table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th colspan="3">Location information</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr><td>Adress:</td><td>{{ user.babysitter.address }}</td></tr>
+                                            <tr><td>City:</td><td>{{ user.babysitter.city }}</td></tr>
+                                            <tr><td>Near:</td><td>{{ user.babysitter.near }}</td></tr>
+                                            <tr><td>How Many KM:</td><td>{{ user.babysitter.howManyKM }}</td></tr>
+                                            </tbody>
+                                        </table>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                {% if user.babysitter is not null %}
+                                    <p>{{ user.babysitter.shortDescription }}</p>
+                                    <table class="table table-condensed table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th colspan="3">Experiance information</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr><td>Years Experiance:</td><td>{{ user.babysitter.yearsExperiance }}</td></tr>
+                                        <tr><td>Kids Able Carry:</td><td>{{ user.babysitter.kidsAbleCarry }}</td></tr>
+                                        <tr><td>Education:</td><td>{{ user.babysitter.education }}</td></tr>
+                                        </tbody>
+                                    </table>
+                                    <table class="table table-condensed table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th colspan="3">More Information</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr><td>Comfortable with pets</td><td>{% if user.babysitter.pets %}Yes{% else %}No{% endif %}</td></tr>
+                                        <tr><td>Smoker</td><td>{% if user.babysitter.smoker %}Yes{% else %}No{% endif %}</td></tr>
+                                        <tr><td>Alcoholic</td><td>{% if user.babysitter.alcoholic %}Yes{% else %}No{% endif %}</td></tr>
+                                        <tr><td>Provide sick care</td><td>{% if user.babysitter.provideSickCare %}Yes{% else %}No{% endif %}</td></tr>
+                                        <tr><td>Special needs</td><td>{% if user.babysitter.specialNeeds %}Yes{% else %}No{% endif %}</td></tr>
+                                        <tr><td>Homework help</td><td>{% if user.babysitter.homeWorkHelp %}Yes{% else %}No{% endif %}</td></tr>
+                                        </tbody>
+                                    </table>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

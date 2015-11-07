@@ -171,6 +171,34 @@ class BabySitter
     private $religion;
 
     /**
+     * @var string
+     * @Assert\Url()
+     * @ORM\Column(name="facebook", type="string", length=255,nullable=true)
+     */
+    private $facebook;
+
+    /**
+     * @var string
+     * @Assert\Url()
+     * @ORM\Column(name="linkedIn", type="string", length=255,nullable=true)
+     */
+    private $linkedIn;
+
+    /**
+     * @var string
+     * @Assert\Url()
+     * @ORM\Column(name="googlePlus", type="string", length=255,nullable=true)
+     */
+    private $googlePlus;
+
+    /**
+     * @var string
+     * @Assert\Url()
+     * @ORM\Column(name="twitter", type="string", length=255,nullable=true)
+     */
+    private $twitter;
+
+    /**
      * @var \DateTime
      *
      * @ORM\COlumn(name="updated_at",type="datetime", nullable=true)
@@ -845,5 +873,101 @@ class BabySitter
     public function getHowManyKM()
     {
         return $this->howManyKM;
+    }
+
+    /**
+     * Set facebook
+     *
+     * @param string $facebook
+     *
+     * @return BabySitter
+     */
+    public function setFacebook($facebook)
+    {
+        $this->facebook = $facebook;
+
+        return $this;
+    }
+
+    /**
+     * Get facebook
+     *
+     * @return string
+     */
+    public function getFacebook()
+    {
+        return $this->facebook;
+    }
+
+    /**
+     * Set linkedIn
+     *
+     * @param string $linkedIn
+     *
+     * @return BabySitter
+     */
+    public function setLinkedIn($linkedIn)
+    {
+        $this->linkedIn = $linkedIn;
+
+        return $this;
+    }
+
+    /**
+     * Get linkedIn
+     *
+     * @return string
+     */
+    public function getLinkedIn()
+    {
+        return $this->linkedIn;
+    }
+
+    /**
+     * Set googlePlus
+     *
+     * @param string $googlePlus
+     *
+     * @return BabySitter
+     */
+    public function setGooglePlus($googlePlus)
+    {
+        $this->googlePlus = $googlePlus;
+
+        return $this;
+    }
+
+    /**
+     * Get googlePlus
+     *
+     * @return string
+     */
+    public function getGooglePlus()
+    {
+        return $this->googlePlus;
+    }
+
+    /**
+     * Set twitter
+     *
+     * @param string $twitter
+     *
+     * @return BabySitter
+     */
+    public function setTwitter($twitter)
+    {
+        $this->twitter = $twitter;
+
+        return $this;
+    }
+
+    /**
+     * Get twitter
+     *
+     * @return string
+     */
+    public function getTwitter()
+    {
+        return $this->twitter;
     }
 }

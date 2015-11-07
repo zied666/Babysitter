@@ -1,0 +1,13 @@
+<li {% if app.request.getPathInfo|split('/admin/babysitter')|length > 1 %} class="active open"{% endif %}>
+<a href="javascript:void(0)"><i class="clip-user-2"></i>
+        <span class="title">BabySitters</span><i class="icon-arrow"></i>
+        <span class="selected"></span>
+    </a>
+    <ul class="sub-menu">
+        <li {% if app.request.get('_route')in ['back_user_babysiter_listes'] %} class="open"{% endif %}>
+            <a href="{{ path('back_user_babysiter_listes') }}">
+                <span class="title">Liste</span>
+            </a>
+        </li>
+    </ul>
+</li>

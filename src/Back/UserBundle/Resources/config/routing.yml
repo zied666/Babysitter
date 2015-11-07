@@ -1,0 +1,6 @@
+back_user_babysitter:
+    resource: "@BackUserBundle/Resources/config/routing/babysitter.yml"
+    prefix:   /babysitter
+back_user_parent:
+    resource: "@BackUserBundle/Resources/config/routing/parent.yml"
+    prefix:   /parent

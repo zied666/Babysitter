@@ -93,6 +93,10 @@ class BabySitterType extends AbstractType
                 'choices'=>$km,
                 'required'=>false,
             ))
+            ->add('facebook')
+            ->add('googlePlus')
+            ->add('linkedIn')
+            ->add('twitter')
         ;
     }
     

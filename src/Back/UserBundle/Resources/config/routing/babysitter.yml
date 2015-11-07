@@ -1,0 +1,11 @@
+back_user_babysiter_listes:
+    path:     /liste/{page}
+    defaults: { _controller: BackUserBundle:BabySitter:liste,page:1 }
+
+back_user_babysiter_details:
+    path:     /details/{id}
+    defaults: { _controller: BackUserBundle:BabySitter:details }
+
+back_user_babysiter_enable:
+    path:     /enable/{id}
+    defaults: { _controller: BackUserBundle:BabySitter:enable }
