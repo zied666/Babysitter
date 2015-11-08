@@ -17,7 +17,7 @@ class RegistrationType extends AbstractType
             'type'=>'choice',
             'options'=>array(
                 'choices'=>array(
-                    "ROLE_PARRENT"=>'Parrent',
+                    "ROLE_PARRENT"=>'Parent/Customer',
                     "ROLE_BABYSITTER"=>'Baby Sitter',
                 ),
                 'label'=>'profile',

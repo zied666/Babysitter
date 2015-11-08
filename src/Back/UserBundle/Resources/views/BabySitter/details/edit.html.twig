@@ -1,0 +1,88 @@
+{% extends 'BackUserBundle:BabySitter:liste.html.twig' %}
+{% block title %}{{ user }}{% endblock %}
+{% block topbody %}
+    {{ parent() }}
+    <li>{{ user }}</li>
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="tabbable">
+                {% include 'BackUserBundle:BabySitter/details:menu.html.twig' %}
+                <div class="tab-content">
+                    <div class="tab-pane in active">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        {{ form_start(form) }}
+                                        {{ form_errors(form) }}
+                                        <h3 class="section-title">Personal information</h3>
+                                        <hr>
+                                        <div class="row">
+                                            {{ formulaire.input("col-md-2","Gender",form.gender,true) }}
+                                            {{ formulaire.input("col-md-3","First Name",form.firstName,true) }}
+                                            {{ formulaire.input("col-md-3","Last Name",form.lastName,true) }}
+                                            {{ formulaire.input("col-md-3","Phone number",form.phoneNumber,true) }}
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <img class="middle-item" src="{% if user.babysitter.path is null %}https://placeholdit.imgix.net/~text?txtsize=20&txt=No%20Picture&w=80&h=80{% else %}{{ asset(user.babysitter.assetPath) }}{% endif %}" style="width: 80px;height: 80px"/> </a>
+                                            </div>
+                                            {{ formulaire.input("col-md-3","Picture",form.file,true) }}
+                                            {{ formulaire.input("col-md-3","Religion",form.religion,true) }}
+                                            {{ formulaire.input("col-md-3","Birthday",form.birthday,true) }}
+                                        </div>
+                                        <hr><h3 class="section-title">About Me</h3>
+                                        <hr>
+                                        <div class="row">
+                                            {{ formulaire.input("col-md-12",null,form.shortDescription,true) }}
+                                        </div>
+                                        <hr><h3 class="section-title">Location</h3>
+                                        <hr>
+                                        <div class="row">
+                                            {{ formulaire.input("col-md-4","city",form.city,true) }}
+                                            {{ formulaire.input("col-md-4","Near To",form.near,true) }}
+                                            {{ formulaire.input("col-md-3","How Many KM",form.howManyKM,true) }}
+                                        </div>
+                                        <div class="row">
+                                            {{ formulaire.input("col-md-12","Adress",form.address,true) }}
+                                        </div>
+                                        <hr><h3 class="section-title">More Informations</h3>
+                                        <hr>
+                                        <div class="row">
+                                            {{ formulaire.select2("col-md-12","Languages",form.languages,true) }}
+                                        </div>
+                                        <div class="row">
+                                            {{ formulaire.input("col-md-4","Years Experiance",form.yearsExperiance,true) }}
+                                            {{ formulaire.input("col-md-4","N° of kids able to carry ",form.kidsAbleCarry,true) }}
+                                            {{ formulaire.input("col-md-4","Education",form.education,true) }}
+                                        </div>
+                                        <div class="row">
+                                            {{ formulaire.input("col-md-12",null,form.pets,true) }}
+                                            {{ formulaire.input("col-md-12",null,form.smoker,true) }}
+                                            {{ formulaire.input("col-md-12",null,form.alcoholic,true) }}
+                                            {{ formulaire.input("col-md-12",null,form.provideSickCare,true) }}
+                                            {{ formulaire.input("col-md-12",null,form.specialNeeds,true) }}
+                                            {{ formulaire.input("col-md-12",null,form.homeWorkHelp,true) }}
+                                        </div>
+                                        <hr><h3 class="section-title">Social Network</h3><hr>
+                                        <div class="row">
+                                            {{ formulaire.input("col-md-6","Facebook Profile URL (Optional)",form.facebook,true) }}
+                                            {{ formulaire.input("col-md-6","Google + Profile URL (Optional)",form.googlePlus,true) }}
+                                            {{ formulaire.input("col-md-6","Twitter Profile URL (Optional)",form.twitter,true) }}
+                                            {{ formulaire.input("col-md-6","LinkedIn Profile URL (Optional)",form.linkedIn,true) }}
+                                        </div>
+                                        {{ formulaire.submit("Submit") }}
+                                        {{ form_end(form) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

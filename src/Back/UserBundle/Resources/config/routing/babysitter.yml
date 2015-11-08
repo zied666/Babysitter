@@ -9,3 +9,7 @@ back_user_babysiter_details:
 back_user_babysiter_enable:
     path:     /enable/{id}
     defaults: { _controller: BackUserBundle:BabySitter:enable }
+
+back_user_babysiter_edit:
+    path:     /edit/{id}
+    defaults: { _controller: BackUserBundle:BabySitter:edit }

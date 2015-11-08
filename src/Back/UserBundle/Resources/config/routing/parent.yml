@@ -1,0 +1,7 @@
+back_user_parent_listes:
+    path:     /liste/{page}
+    defaults: { _controller: BackUserBundle:Parent:liste,page:1 }
+
+back_user_parent_enable:
+    path:     /enable/{id}
+    defaults: { _controller: BackUserBundle:Parent:enable }

@@ -2,6 +2,8 @@
 
 namespace Back\UserBundle\Controller;
 
+use Back\UserBundle\Entity\BabySitter;
+use Back\UserBundle\Form\BabySitterType;
 use FOS\UserBundle\Model\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -22,7 +24,7 @@ class BabySitterController extends Controller
         $session = $this->get('session');
         $user=$em->find('BackUserBundle:User',$id);
         if(is_null($user->getBabySitter()))
-            $session->getFlashBag()->add('info', "Profile not filled");
+            $user->setBabysitter(new BabySitter());
         return $this->render('BackUserBundle:BabySitter/details:details.html.twig', array('user' => $user));
     }
 
@@ -38,5 +40,29 @@ class BabySitterController extends Controller
         $em->flush();
         $session->getFlashBag()->add('success', "Your BabuSitter has been changed successfully");
         return $this->redirect($this->generateUrl('back_user_babysiter_listes'));
+    }
+
+    public function editAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $session = $this->get('session');
+        $user=$em->find('BackUserBundle:User',$id);
+        if(is_null($user->getBabySitter()))
+            $user->setBabysitter(new BabySitter());
+        $form=$this->createForm(new BabySitterType(),$user->getBabysitter());
+        $request=$this->getRequest();
+        if($request->isMethod('POST'))
+        {
+            $form->submit($request);
+            if($form->isValid())
+            {
+                $data=$form->getData();
+                $em->persist($data);
+                $em->flush();
+                $session->getFlashBag()->add('success', "BabuSitter account has been changed successfully");
+                return $this->redirect($this->generateUrl('back_user_babysiter_edit',array('id'=>$id)));
+            }
+        }
+        return $this->render('BackUserBundle:BabySitter/details:edit.html.twig', array('form' => $form->createView(),'user' => $user));
     }
 }
