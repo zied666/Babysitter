@@ -5,3 +5,7 @@ front_homepage:
 Front_BabySitter_Profile:
     resource: "@FrontGeneralBundle/Resources/config/routing/BabySitter.yml"
     prefix:   /baby_sitter_space
+
+front_babysitter_liste:
+    path:     /liste/{page}/
+    defaults: { _controller: FrontGeneralBundle:Default:homePage }
