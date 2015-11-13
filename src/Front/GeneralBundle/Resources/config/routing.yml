@@ -7,5 +7,5 @@ Front_BabySitter_Profile:
     prefix:   /baby_sitter_space
 
 front_babysitter_liste:
-    path:     /liste/{page}/
-    defaults: { _controller: FrontGeneralBundle:Default:homePage }
+    path:     /liste/{page}
+    defaults: { _controller: FrontGeneralBundle:BabySitter:liste,page:1 }

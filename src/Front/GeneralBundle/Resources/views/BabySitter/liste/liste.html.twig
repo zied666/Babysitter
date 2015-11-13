@@ -1,0 +1,30 @@
+{% extends ":Front:base.html.twig" %}
+{% block title %}list of babysitters{% endblock %}
+{% block breadcrumbs %}
+    {{ parent() }}
+    <li class="active">list of babysitters</li>
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div id="main">
+            <div class="row">
+                {% include 'FrontGeneralBundle:BabySitter/liste:filtre.html.twig' %}
+                <div class="col-sm-8 col-md-9">
+                    {% include 'FrontGeneralBundle:BabySitter/liste:sort.html.twig' %}
+                    <div class="hotel-list">
+                        <div class="row image-box listing-style2">
+                            {% for babysitter in babysitters %}
+                                {% include 'FrontGeneralBundle:BabySitter/liste:babysitter.html.twig' %}
+                            {% else %}
+                                <h3>NO BabySitters</h3>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="navigation">
+                        {{ knp_pagination_render(babysitters) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

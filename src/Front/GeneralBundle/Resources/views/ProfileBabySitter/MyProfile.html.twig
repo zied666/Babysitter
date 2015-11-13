@@ -10,8 +10,24 @@
             <div id="main" class="col-md-12">
                 <div class="booking-section travelo-box">
                     {% include ':Front:alert.html.twig' %}
-                    <div class="person-information">
-                        {{ form_start(form) }}
+                    {{ form_start(form) }}
+                    <div class="person-information booking-information">
+                        <div class="booking-confirmation clearfix">
+                            {% if babysitter.id is null %}
+                                <i class="soap-icon-notice icon circle" style="color: red"></i>
+                                <div class="message">
+                                    <h4 class="main-message" style="color: red">Please complete Your Profile to validate it</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..</p>
+                                </div>
+                            {% else %}
+                                <i class="soap-icon-check icon circle" style="color: green"></i>
+                                <div class="message">
+                                    <h4 class="main-message" style="color: green">Your profile is validated</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..</p>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <hr>
                         <h3 class="section-title">Personal information</h3>
                         <hr>
                         <div class="row">
@@ -28,12 +44,14 @@
                             {{ formulaire.input("col-md-3","Religion",form.religion,true) }}
                             {{ formulaire.input("col-md-3","Birthday",form.birthday,true) }}
                         </div>
-                        <hr><h3 class="section-title">About Me</h3>
+                        <hr>
+                        <h3 class="section-title">About Me</h3>
                         <hr>
                         <div class="row">
                             {{ formulaire.input("col-md-12",null,form.shortDescription,true) }}
                         </div>
-                        <hr><h3 class="section-title">Location</h3>
+                        <hr>
+                        <h3 class="section-title">Location</h3>
                         <hr>
                         <div class="row">
                             {{ formulaire.input("col-md-4","city",form.city,true) }}
@@ -41,9 +59,10 @@
                             {{ formulaire.input("col-md-3","How Many KM",form.howManyKM,true) }}
                         </div>
                         <div class="row">
-                            {{ formulaire.input("col-md-12","Adress",form.address,true) }}
+                            {{ formulaire.input("col-md-12","Address",form.address,true) }}
                         </div>
-                        <hr><h3 class="section-title">More Informations</h3>
+                        <hr>
+                        <h3 class="section-title">More Informations</h3>
                         <hr>
                         <div class="row">
                             {{ formulaire.select2("col-md-12","Languages",form.languages,true) }}
@@ -61,7 +80,9 @@
                             {{ formulaire.input("col-md-12",null,form.specialNeeds,true) }}
                             {{ formulaire.input("col-md-12",null,form.homeWorkHelp,true) }}
                         </div>
-                        <hr><h3 class="section-title">Social Network</h3><hr>
+                        <hr>
+                        <h3 class="section-title">Social Network</h3>
+                        <hr>
                         <div class="row">
                             {{ formulaire.input("col-md-6","Facebook Profile URL (Optional)",form.facebook,true) }}
                             {{ formulaire.input("col-md-6","Google + Profile URL (Optional)",form.googlePlus,true) }}
@@ -76,8 +97,8 @@
                                 </button>
                             </div>
                         </div>
-                        {{ form_end(form) }}
                     </div>
+                    {{ form_end(form) }}
                 </div>
             </div>
         </div>

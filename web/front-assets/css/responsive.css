@@ -378,7 +378,7 @@
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)" !important;
         -moz-opacity: 0 !important;
         -khtml-opacity: 0 !important;
-        opacity: 0 !important; }
+        /*opacity: 0 !important;*/ }
     #header .main-navigation {
       background: #fff; }
     #header .mobile-menu-toggle {

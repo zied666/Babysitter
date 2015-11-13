@@ -970,4 +970,9 @@ class BabySitter
     {
         return $this->twitter;
     }
+
+    public function __toString()
+    {
+        return $this->firstName.' '.$this->lastName;
+    }
 }

@@ -3,18 +3,18 @@
     <div class="main-header">
         <a href="#mobile-menu-01" data-toggle="collapse" class="mobile-menu-toggle"> Mobile Menu Toggle </a>
         <div class="container">
-            <h1 class="logo navbar-brand">
+            <h1 class="logo navbar-brand" style="margin-right: 30px;">
                 <a href="{{ path('front_homepage') }}" title=" BabySitter">
                     <img src="{{ asset('front-assets/images/logo.png') }}" alt="Flam Travel HTML5 Template" id="PrincipalLogo" width="300px" style="margin-top: 0px"/>
                 </a>
             </h1>
             <nav id="main-menu" role="navigation">
-                <ul class="menu">
-                    <li class="menu-item-has-children">
+                <ul class="menu" style="float: none">
+                    <li style="padding-left: 20px;" class="menu-item-has-children {% if app.request.get('_route')=='front_homepage' %}active{% endif %}">
                         <a href="{{ path('front_homepage') }}">HomePage</a>
                     </li>
-                    <li class="menu-item-has-children">
-                        {#<a href="{{ path('front_hoteltunisie_list') }}">Hôtels en tunisie</a>#}
+                    <li class="menu-item-has-children {% if app.request.get('_route')=='front_babysitter_liste' %}active{% endif %}">
+                        <a href="{{ path('front_babysitter_liste') }}">Babysitters</a>
                     </li>
                     <li class="menu-item-has-children">
                         {#<a href="{{ path('front_voyageorganise_liste') }}">Voyages organisés</a>#}
@@ -31,9 +31,9 @@
                 <li>
                     <a href="{{ path('front_homepage') }}">HomePage</a>
                 </li>
-                {#<li>#}
-                    {#<a href="hotel-index.html">Circuits</a>#}
-                {#</li>#}
+                <li>
+                    <a href="{{ path('front_babysitter_liste') }}">Babysitters</a>
+                </li>
                 {#<li>#}
                     {#<a href="flight-index.html">Hôtels à l'étranger</a>#}
                 {#</li>#}
