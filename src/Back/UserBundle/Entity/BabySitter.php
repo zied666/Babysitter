@@ -82,7 +82,7 @@ class BabySitter
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=255)
+     * @ORM\Column(name="city", type="string", length=255,nullable=true)
      */
     private $city;
 
