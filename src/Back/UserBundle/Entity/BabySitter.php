@@ -4,6 +4,7 @@ namespace Back\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * BabySitter
@@ -22,6 +23,12 @@ class BabySitter
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @Gedmo\Slug(fields={"firstName", "lastName"})
+     * @ORM\Column(length=128, unique=true)
+     */
+    private $slug;
 
     /**
      * @var string
@@ -43,6 +50,27 @@ class BabySitter
      * @ORM\Column(name="address", type="string", length=255)
      */
     private $address;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="longitude", type="string", length=255,nullable=true)
+     */
+    private $longitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="latitude", type="string", length=255,nullable=true)
+     */
+    private $latitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="country", type="string", length=255,nullable=true)
+     */
+    private $country;
 
     /**
      * @var string
@@ -973,6 +1001,102 @@ class BabySitter
 
     public function __toString()
     {
-        return $this->firstName.' '.$this->lastName;
+        return $this->firstNam.' '.$this->lastName;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return BabySitter
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set longitude
+     *
+     * @param string $longitude
+     *
+     * @return BabySitter
+     */
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
+
+    /**
+     * Get longitude
+     *
+     * @return string
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
+    }
+
+    /**
+     * Set latitude
+     *
+     * @param string $latitude
+     *
+     * @return BabySitter
+     */
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    /**
+     * Get latitude
+     *
+     * @return string
+     */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * Set country
+     *
+     * @param string $country
+     *
+     * @return BabySitter
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
     }
 }

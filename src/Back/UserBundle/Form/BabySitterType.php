@@ -26,8 +26,8 @@ class BabySitterType extends AbstractType
             ->add('birthday','birthday')
             ->add('gender','choice',array(
                 'choices'=>array(
-                    'Masculine'=>'Masculine',
-                    'Feminine'=>'Feminine',
+                    'Masculine'=>'Male',
+                    'Feminine'=>'Female',
                 ),
                 'expanded'=>true,
                 'required'=>true,
@@ -87,7 +87,6 @@ class BabySitterType extends AbstractType
                 'required'=>false
             ))
             ->add('file')
-            ->add('city')
             ->add('near')
             ->add('howManyKM','choice',array(
                 'choices'=>$km,
@@ -97,9 +96,21 @@ class BabySitterType extends AbstractType
             ->add('googlePlus')
             ->add('linkedIn')
             ->add('twitter')
+            ->add('longitude','text',array(
+                'read_only'=>true
+            ))
+            ->add('latitude','text',array(
+                'read_only'=>true
+            ))
+            ->add('country','text',array(
+                'read_only'=>true
+            ))
+            ->add('city','text',array(
+                'read_only'=>true
+            ))
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

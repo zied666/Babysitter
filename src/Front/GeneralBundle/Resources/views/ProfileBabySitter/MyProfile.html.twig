@@ -54,12 +54,17 @@
                         <h3 class="section-title">Location</h3>
                         <hr>
                         <div class="row">
-                            {{ formulaire.input("col-md-4","city",form.city,true) }}
-                            {{ formulaire.input("col-md-4","Near To",form.near,true) }}
-                            {{ formulaire.input("col-md-3","How Many KM",form.howManyKM,true) }}
+                            {{ formulaire.input("col-md-12","Address",form.address,true) }}
                         </div>
                         <div class="row">
-                            {{ formulaire.input("col-md-12","Address",form.address,true) }}
+                            {{ formulaire.input("col-md-3","City",form.city,true) }}
+                            {{ formulaire.input("col-md-3","Country",form.country,true) }}
+                            {{ formulaire.input("col-md-3","Longitude",form.longitude,true) }}
+                            {{ formulaire.input("col-md-3","Latitude",form.latitude,true) }}
+                        </div>
+                        <div class="row">
+                            {{ formulaire.input("col-md-4","Near To",form.near,true) }}
+                            {{ formulaire.input("col-md-3","How Many KM",form.howManyKM,true) }}
                         </div>
                         <hr>
                         <h3 class="section-title">More Informations</h3>
@@ -103,4 +108,27 @@
             </div>
         </div>
     </div>
+{% endblock %}
+{% block jquery %}
+    <script>
+        tjq('#back_userbundle_babysitter_address').on('focusout', function () {
+            var val = tjq(this).val();
+            tjq('#back_userbundle_babysitter_city').val("Loading ...");
+            tjq('#back_userbundle_babysitter_country').val("Loading ...");
+            tjq('#back_userbundle_babysitter_longitude').val("Loading ...");
+            tjq('#back_userbundle_babysitter_latitude').val("Loading ...");
+            tjq.ajax({
+                url: '{{ path('Front_BabySitter_Profile_ajax_to_address') }}',
+                data: {'address': val},
+                type: 'POST',
+                dataType: 'json',
+                success: function (json) {
+                    tjq('#back_userbundle_babysitter_city').val(json[0]);
+                    tjq('#back_userbundle_babysitter_country').val(json[1]);
+                    tjq('#back_userbundle_babysitter_longitude').val(json[2]);
+                    tjq('#back_userbundle_babysitter_latitude').val(json[3]);
+                }
+            });
+        });
+    </script>
 {% endblock %}

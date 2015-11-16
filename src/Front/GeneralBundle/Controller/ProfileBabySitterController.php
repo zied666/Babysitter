@@ -5,6 +5,7 @@ namespace Front\GeneralBundle\Controller;
 use Back\UserBundle\Entity\BabySitter;
 use Back\UserBundle\Form\BabySitterType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ProfileBabySitterController extends Controller
 {
@@ -37,5 +38,18 @@ class ProfileBabySitterController extends Controller
             'form'=>$form->createView(),
             'babysitter'=>$babysitter
         ));
+    }
+
+    public function ajaxToAddressAction()
+    {
+        $response = new JsonResponse();
+        $response->setData(array(
+            $this->get('geolocation')->getCity($this->getRequest()->get('address')),
+            $this->get('geolocation')->getCountry($this->getRequest()->get('address')),
+            $this->get('geolocation')->getLongitude($this->getRequest()->get('address')),
+            $this->get('geolocation')->getLatitude($this->getRequest()->get('address'))
+
+        ));
+        return $response;
     }
 }

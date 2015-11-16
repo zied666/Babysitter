@@ -2,7 +2,7 @@
 {% block title %}list of babysitters{% endblock %}
 {% block breadcrumbs %}
     {{ parent() }}
-    <li class="active">list of babysitters</li>
+    <li {% if app.request.get('_route')=='front_babysitter_liste' %} class="active"{% endif %}><a href="{{ path('front_babysitter_liste') }}">list of babysitters</a></li>
 {% endblock %}
 {% block body %}
     <div class="container">
@@ -14,7 +14,7 @@
                     <div class="hotel-list">
                         <div class="row image-box listing-style2">
                             {% for babysitter in babysitters %}
-                                {% include 'FrontGeneralBundle:BabySitter/liste:babysitter.html.twig' %}
+                                {% include 'FrontGeneralBundle:BabySitter/liste:artice.html.twig' %}
                             {% else %}
                                 <h3>NO BabySitters</h3>
                             {% endfor %}

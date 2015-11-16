@@ -1,3 +1,7 @@
 Front_BabySitter_Profile_myprofile:
     path:     /MyProfile
     defaults: { _controller: FrontGeneralBundle:ProfileBabySitter:profile }
+
+Front_BabySitter_Profile_ajax_to_address:
+    path:     /ajax_to_address
+    defaults: { _controller: FrontGeneralBundle:ProfileBabySitter:ajaxToAddress }

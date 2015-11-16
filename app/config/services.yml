@@ -8,3 +8,10 @@ services:
         class: Back\UserBundle\Form\RegistrationType
         tags:
             - { name: form.type, alias: app_user_registration }
+
+    gedmo.listener.sluggable:
+        class: Gedmo\Sluggable\SluggableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ "@annotation_reader" ] ]

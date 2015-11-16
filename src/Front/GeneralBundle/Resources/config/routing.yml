@@ -9,3 +9,7 @@ Front_BabySitter_Profile:
 front_babysitter_liste:
     path:     /liste/{page}
     defaults: { _controller: FrontGeneralBundle:BabySitter:liste,page:1 }
+
+front_babysitter_profile:
+    path:     /babysitter/{slug}
+    defaults: { _controller: FrontGeneralBundle:BabySitter:babysiter,page:1 }

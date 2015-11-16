@@ -14,4 +14,11 @@ class BabySitterController extends Controller
         $babysitters = $this->get('knp_paginator')->paginate($babysitters,$page,15);
         return $this->render('FrontGeneralBundle:BabySitter/liste:liste.html.twig', array('babysitters' => $babysitters));
     }
+
+    public function babysiterAction($slug)
+    {
+        $em=$this->getDoctrine()->getManager();
+        $babysitter=$em->getRepository('BackUserBundle:BabySitter')->findOneBySlug($slug);
+        return $this->render('FrontGeneralBundle:BabySitter/Profile:profile.html.twig', array('babysitter' => $babysitter));
+    }
 }
