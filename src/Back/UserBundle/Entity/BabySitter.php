@@ -1001,7 +1001,7 @@ class BabySitter
 
     public function __toString()
     {
-        return $this->firstNam.' '.$this->lastName;
+        return $this->firstName.' '.$this->lastName;
     }
 
     /**

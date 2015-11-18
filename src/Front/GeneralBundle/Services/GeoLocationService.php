@@ -26,6 +26,7 @@ class GeoLocationService
 
     public function getLongitude($address)
     {
+        $address=urlencode($address);
         $url = "http://maps.google.com/maps/api/geocode/json?address=$address&sensor=false";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -41,6 +42,7 @@ class GeoLocationService
 
     public function getLatitude($address)
     {
+        $address=urlencode($address);
         $url = "http://maps.google.com/maps/api/geocode/json?address=$address&sensor=false";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -56,6 +58,7 @@ class GeoLocationService
 
     public function getCountry($address)
     {
+        $address=urlencode($address);
         $url = "http://maps.google.com/maps/api/geocode/json?address=$address&sensor=false";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -76,6 +79,7 @@ class GeoLocationService
 
     public function getCity($address)
     {
+        $address=urlencode($address);
         $url = "http://maps.google.com/maps/api/geocode/json?address=$address&sensor=false";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
