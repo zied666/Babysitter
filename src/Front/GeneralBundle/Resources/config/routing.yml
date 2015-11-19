@@ -7,8 +7,21 @@ Front_BabySitter_Profile:
     prefix:   /baby_sitter_space
 
 front_babysitter_liste:
-    path:     /liste/{page}
-    defaults: { _controller: FrontGeneralBundle:BabySitter:liste,page:1 }
+    path:     /liste/{page}/{country}/{city}/{gender}/{languages}/{smoker}/{specialNeeds}/{provideSickCare}/{pets}/{homeWorkHelp}/{motCle}
+    defaults:
+        _controller: FrontGeneralBundle:BabySitter:liste
+        page : 1
+        country: all
+        city: all
+        gender: all
+        languages: all
+        smoker: all
+        specialNeeds: all
+        provideSickCare: all
+        pets: all
+        homeWorkHelp: all
+        motCle: null
+
 
 front_babysitter_profile:
     path:     /babysitter/{slug}

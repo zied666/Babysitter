@@ -1,7 +1,7 @@
 <div class="col-sms-6 col-sm-6 col-md-4">
     <article class="box">
         <figure>
-            <a href="{{ path('front_babysitter_profile',{'slug':babysitter.slug}) }}" title="" class="hover-effect popup-gallery">
+            <a href="{{ path('front_babysitter_profile',{'slug':babysitter.slug}) }}">
                 {% if babysitter.path is null %}
                     <img src="https://placeholdit.imgix.net/~text?txtsize=25&txt=No%20Picture%20available&w=270&h=160" />
                 {% else %}
@@ -13,7 +13,7 @@
             <a title="View all" href="{{ path('front_babysitter_profile',{'slug':babysitter.slug}) }}" class="pull-right button uppercase">Select</a>
             <h4 class="box-title">{{ babysitter }}</h4>
             <label class="price-wrapper">
-                {{ babysitter.city }}
+                {{ babysitter.city }}, {{ babysitter.country|upper }}
             </label>
         </div>
     </article>

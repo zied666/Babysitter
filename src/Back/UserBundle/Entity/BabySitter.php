@@ -10,7 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * BabySitter
  *
  * @ORM\Table(name="b_babysitter")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Back\UserBundle\Entity\Repository\BabySitterRepository")
  * @ORM\HasLifecycleCallbacks
  */
 class BabySitter

@@ -57,7 +57,7 @@
                         <div class="tab-content">
                             <div class="tab-pane fade in active" id="hotel-description">
                                 <div class="intro table-wrapper full-width hidden-table-sms">
-                                    <div class="col-sm-5 col-lg-4 features table-cell">
+                                    <div class="col-sm-5 col-lg-6 features table-cell">
                                         <ul>
                                             <li><label>Name:</label>{{ babysitter }}</li>
                                             <li><label>Gender:</label>{{ babysitter.gender }}</li>
@@ -70,7 +70,7 @@
                                             <li><label>How Many KM:</label>{{ babysitter.howManyKM }}</li>
                                         </ul>
                                     </div>
-                                    <div class="col-sm-5 col-lg-8 features table-cell secondcell" style="padding-left: 10px;padding-right: 10px;">
+                                    <div class="col-sm-5 col-lg-6 features table-cell" style="padding-left: 10px;padding-right: 10px;">
                                         <ul>
                                             <li><label>Languages:</label>{{ babysitter.languages|join(', ') }}</li>
                                             <li><label>Education:</label>{{ babysitter.education }}</li>
@@ -156,7 +156,7 @@
 {% block stylesheets %}
     {{ parent() }}
     <style>
-        .secondcell label {
+        .table-cell label {
             width: 200px !important;
         }
     </style>

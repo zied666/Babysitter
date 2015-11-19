@@ -26,8 +26,8 @@ class BabySitterType extends AbstractType
             ->add('birthday','birthday')
             ->add('gender','choice',array(
                 'choices'=>array(
-                    'Masculine'=>'Male',
-                    'Feminine'=>'Female',
+                    'Male'=>'Male',
+                    'Female'=>'Female',
                 ),
                 'expanded'=>true,
                 'required'=>true,
@@ -92,10 +92,6 @@ class BabySitterType extends AbstractType
                 'choices'=>$km,
                 'required'=>false,
             ))
-            ->add('facebook')
-            ->add('googlePlus')
-            ->add('linkedIn')
-            ->add('twitter')
             ->add('longitude','text',array(
                 'read_only'=>true
             ))
@@ -108,6 +104,10 @@ class BabySitterType extends AbstractType
             ->add('city','text',array(
                 'read_only'=>true
             ))
+            ->add('facebook')
+            ->add('googlePlus')
+            ->add('linkedIn')
+            ->add('twitter')
         ;
     }
 
