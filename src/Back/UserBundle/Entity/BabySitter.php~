@@ -10,7 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * BabySitter
  *
  * @ORM\Table(name="b_babysitter")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Back\UserBundle\Entity\Repository\BabySitterRepository")
  * @ORM\HasLifecycleCallbacks
  */
 class BabySitter
@@ -23,6 +23,13 @@ class BabySitter
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="validated", type="boolean",nullable=true)
+     */
+    private $validated;
 
     /**
      * @Gedmo\Slug(fields={"firstName", "lastName"})
@@ -82,7 +89,7 @@ class BabySitter
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=255)
+     * @ORM\Column(name="city", type="string", length=255,nullable=true)
      */
     private $city;
 
@@ -242,6 +249,11 @@ class BabySitter
      * @Assert\Image()
      */
     public $file;
+
+    public function __construct()
+    {
+        $this->validated=false;
+    }
 
     public function getUploadRootDir()
     {
@@ -1001,7 +1013,7 @@ class BabySitter
 
     public function __toString()
     {
-        return $this->firstNam.' '.$this->lastName;
+        return $this->firstName.' '.$this->lastName;
     }
 
     /**
@@ -1074,5 +1086,29 @@ class BabySitter
     public function getLatitude()
     {
         return $this->latitude;
+    }
+
+    /**
+     * Set country
+     *
+     * @param string $country
+     *
+     * @return BabySitter
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
     }
 }

@@ -8,7 +8,7 @@
         public function filtre($country,$city,$gender,$languages,$smoker,$specialNeeds,$provideSickCare,$pets,$homeWorkHelp,$motCle)
         {
             $qb = $this->createQueryBuilder('b');
-            $qb->where($qb->expr()->isNotNull('b.id'));
+            $qb->where('b.validated = TRUE');
             if($country!='all')
                 $qb->andWhere($qb->expr()->like("UPPER(b.country)", "UPPER('%" . $country . "%')"));
             if($city!='all')
@@ -40,15 +40,29 @@
                     $orX->add($qb->expr()->like("UPPER(b.languages)", "UPPER('%" . $mot . "%')"));
                     $orX->add($qb->expr()->like("UPPER(b.country)", "UPPER('%" . $mot . "%')"));
                     $orX->add($qb->expr()->like("UPPER(b.city)", "UPPER('%" . $mot . "%')"));
+                    $orX->add($qb->expr()->like("UPPER(b.gender)", "UPPER('%" . $mot . "%')"));
                     $andX = $qb->expr()->andX()->add($orX);
                 }
-
                 $qb->andWhere($andX);
             }
-
-
-
-
+            return $qb->getQuery()->getResult();
+        }
+        public function getCountries()
+        {
+            $qb = $this->createQueryBuilder('b');
+            $qb->select('DISTINCT b.country')
+                ->where($qb->expr()->isNotNull('b.country'))
+                ->orderBy('b.country','asc');
+            return $qb->getQuery()->getResult();
+        }
+        public function getCities($country="all")
+        {
+            $qb = $this->createQueryBuilder('b');
+            $qb->select('DISTINCT b.city')
+                ->where($qb->expr()->isNotNull('b.city'))
+                ->orderBy('b.city','asc');
+            if($country!='all')
+                $qb->andWhere($qb->expr()->like("UPPER(b.country)", "UPPER('%" . $country . "%')"));
             return $qb->getQuery()->getResult();
         }
     }

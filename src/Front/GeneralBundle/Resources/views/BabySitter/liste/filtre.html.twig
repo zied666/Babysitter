@@ -13,110 +13,112 @@
             </h4>
             <div id="modify-search-panel" class="panel-collapse collapse in">
                 <div class="panel-content">
-                    <form method="post">
+                    <form method="post" action="{{ path('front_babysitter_liste') }}">
                         <div class="form-group">
                             <label>Keyword</label>
-                            <input type="text" name="motcle" class="input-text full-width" placeholder="" value="{{ app.request.get('motCle') }}" />
+                            <input type="text" name="motCleSearch" class="input-text full-width" placeholder="Country, City, Name, ..." value="{{ app.request.get('motCle') }}" />
                         </div>
                         <div class="form-group">
                             <label>Country</label>
                             <div class="selector">
-                                <select class="full-width">
-                                    <option value="1">01</option>
-                                    <option value="2">02</option>
-                                    <option value="3">03</option>
-                                    <option value="4">04</option>
+                                <select class="full-width" name="countrySearch">
+                                    <option value="all">All</option>
+                                    {% for country in getCountries() %}
+                                        <option value="{{ country.country }}" {% if app.request.get('country')==country.country %}selected{% endif %}>{{ country.country }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>City</label>
                             <div class="selector">
-                                <select class="full-width">
-                                    <option value="1">01</option>
-                                    <option value="2">02</option>
-                                    <option value="3">03</option>
-                                    <option value="4">04</option>
+                                <select class="full-width" name="citySearch">
+                                    <option value="all">All</option>
+                                    {% for city in getCities(app.request.get('country')) %}
+                                        <option value="{{ city.city }}" {% if app.request.get('city')==city.city %}selected{% endif %}>{{ city.city }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Gender</label>
                             <div class="selector">
-                                <select class="full-width">
+                                <select class="full-width" name="genderSearch">
                                     <option value="all">All</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
+                                    <option value="Male" {% if app.request.get('gender')=='Male' %}selected{% endif %}>Male</option>
+                                    <option value="Female" {% if app.request.get('gender')=='Female' %}selected{% endif %}>Female</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Langauges</label>
                             <div class="selector">
-                                <select class="full-width">
+                                <select class="full-width" name="languagesSearch">
                                     <option value="all">All</option>
-                                    <option value="English">English</option>
-                                    <option value="French">French</option>
-                                    <option value="Deutsh">Deutsh</option>
-                                    <option value="Spanish">Spanish</option>
-                                    <option value="Arabic">Arabic</option>
-                                    <option value="Chinese">Chinese</option>
-                                    <option value="Japanese">Japanese</option>
+                                    <option value="English" {% if app.request.get('languages')=='English' %}selected{% endif %}>English</option>
+                                    <option value="French" {% if app.request.get('languages')=='French' %}selected{% endif %}>French</option>
+                                    <option value="Deutsh" {% if app.request.get('languages')=='Deutsh' %}selected{% endif %}>Deutsh</option>
+                                    <option value="Spanish" {% if app.request.get('languages')=='Spanish' %}selected{% endif %}>Spanish</option>
+                                    <option value="Arabic" {% if app.request.get('languages')=='Arabic' %}selected{% endif %}>Arabic</option>
+                                    <option value="Chinese" {% if app.request.get('languages')=='Chinese' %}selected{% endif %}>Chinese</option>
+                                    <option value="Japanese" {% if app.request.get('languages')=='Japanese' %}selected{% endif %}>Japanese</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Smoker</label>
                             <div class="selector">
-                                <select class="full-width">
+                                <select class="full-width" name="smokerSearch">
                                     <option value="all">All</option>
-                                    <option value="true">Yes</option>
-                                    <option value="false">No</option>
+                                    <option value="true" {% if app.request.get('smoker')=='true' %}selected{% endif %}>Yes</option>
+                                    <option value="false" {% if app.request.get('smoker')=='false' %}selected{% endif %}>No</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Special Needs</label>
                             <div class="selector">
-                                <select class="full-width">
+                                <select class="full-width" name="specialNeedsSearch">
                                     <option value="all">All</option>
-                                    <option value="true">Yes</option>
-                                    <option value="false">No</option>
+                                    <option value="true" {% if app.request.get('specialNeeds')=='true' %}selected{% endif %}>Yes</option>
+                                    <option value="false" {% if app.request.get('specialNeeds')=='false' %}selected{% endif %}>No</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Provide sick care</label>
                             <div class="selector">
-                                <select class="full-width">
+                                <select class="full-width" name="provideSickCareSearch">
                                     <option value="all">All</option>
-                                    <option value="true">Yes</option>
-                                    <option value="false">No</option>
+                                    <option value="true" {% if app.request.get('provideSickCare')=='true' %}selected{% endif %}>Yes</option>
+                                    <option value="false" {% if app.request.get('provideSickCare')=='false' %}selected{% endif %}>No</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Comfortable with pets</label>
                             <div class="selector">
-                                <select class="full-width">
+                                <select class="full-width" name="petsSearch">
                                     <option value="all">All</option>
-                                    <option value="true">Yes</option>
-                                    <option value="false">No</option>
+                                    <option value="true" {% if app.request.get('pets')=='true' %}selected{% endif %}>Yes</option>
+                                    <option value="false" {% if app.request.get('pets')=='false' %}selected{% endif %}>No</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Homework help</label>
                             <div class="selector">
-                                <select class="full-width">
+                                <select class="full-width" name="homeWorkHelpSearch">
                                     <option value="all">All</option>
-                                    <option value="true">Yes</option>
-                                    <option value="false">No</option>
+                                    <option value="true" {% if app.request.get('homeWorkHelp')=='true' %}selected{% endif %}>Yes</option>
+                                    <option value="false" {% if app.request.get('homeWorkHelp')=='false' %}selected{% endif %}>No</option>
                                 </select>
                             </div>
                         </div>
                         <br />
-                        <button type="submit" class="btn-medium icon-check uppercase full-width">search again</button>
+                        <button type="submit" class="btn-medium icon-check uppercase full-width">Search</button>
+                        <br />
+                        <a href="{{ path('front_babysitter_liste') }}" class="button btn-mini red" style="float: right">Reset filter</a>
                     </form>
                 </div>
             </div>

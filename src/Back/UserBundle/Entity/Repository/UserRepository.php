@@ -14,4 +14,13 @@
             $qb->where($orX);
             return $qb->getQuery()->getResult();
         }
+
+        public function findBabySitter($validated='all')
+        {
+            $qb = $this->createQueryBuilder('u');
+            $qb->join('u.babysitter','b');
+            if($validated!='all')
+                $qb->where('b.validated = :status')->setParameter('status',$validated);
+            return $qb->getQuery()->getResult();
+        }
     }

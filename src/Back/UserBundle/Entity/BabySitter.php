@@ -25,6 +25,13 @@ class BabySitter
     private $id;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="validated", type="boolean")
+     */
+    private $validated;
+
+    /**
      * @Gedmo\Slug(fields={"firstName", "lastName"})
      * @ORM\Column(length=128, unique=true)
      */
@@ -242,6 +249,11 @@ class BabySitter
      * @Assert\Image()
      */
     public $file;
+
+    public function __construct()
+    {
+        $this->validated=false;
+    }
 
     public function getUploadRootDir()
     {
@@ -1098,5 +1110,29 @@ class BabySitter
     public function getCountry()
     {
         return $this->country;
+    }
+
+    /**
+     * Set validated
+     *
+     * @param boolean $validated
+     *
+     * @return BabySitter
+     */
+    public function setValidated($validated)
+    {
+        $this->validated = $validated;
+
+        return $this;
+    }
+
+    /**
+     * Get validated
+     *
+     * @return boolean
+     */
+    public function getValidated()
+    {
+        return $this->validated;
     }
 }

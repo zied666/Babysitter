@@ -1,4 +1,11 @@
 services:
+    interface:
+        class: Front\GeneralBundle\Twig\FunctionExtension
+        tags:
+            - { name: twig.extension }
+        arguments:
+            em: "@doctrine.orm.entity_manager"
+
     geolocation:
         class: Front\GeneralBundle\Services\GeoLocationService
         arguments:

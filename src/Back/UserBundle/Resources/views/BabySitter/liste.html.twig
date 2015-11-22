@@ -16,7 +16,8 @@
                             <th>Username</th>
                             <th>Email</th>
                             <th>Last login</th>
-                            <th>State</th>
+                            <th>State WEB</th>
+                            <th>State BabySitter</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -32,6 +33,13 @@
                                         <a href="{{ path('back_user_babysiter_enable',{'id':user.id}) }}"><span class="label label-sm label-success">Enabled</span></a>
                                     {% else %}
                                         <a href="{{ path('back_user_babysiter_enable',{'id':user.id}) }}"><span class="label label-sm label-danger">Disabled</span></a>
+                                    {% endif %}
+                                </td>
+                                <td class="center">
+                                    {% if user.babysitter.validated %}
+                                        <a href="{{ path('back_user_babysiter_validated',{'id':user.id}) }}"><span class="label label-sm label-success">Validated</span></a>
+                                    {% else %}
+                                        <a href="{{ path('back_user_babysiter_validated',{'id':user.id}) }}"><span class="label label-sm label-danger">Pending</span></a>
                                     {% endif %}
                                 </td>
                                 <td class="center">

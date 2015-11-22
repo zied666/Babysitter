@@ -9,11 +9,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class BabySitterController extends Controller
 {
-    public function listeAction($page)
+    public function listeAction($page,$validated)
     {
         $em=$this->getDoctrine()->getManager();
         $session = $this->get('session');
-        $users=$em->getRepository('BackUserBundle:User')->findByRole(array('ROLE_BABYSITTER'));
+        $users=$em->getRepository('BackUserBundle:User')->findBabySitter($validated);
         $users = $this->get('knp_paginator')->paginate($users,$page,20);
         return $this->render('BackUserBundle:BabySitter:liste.html.twig', array('users' => $users));
     }
@@ -37,6 +37,20 @@ class BabySitterController extends Controller
             $user->setEnabled(false);
         else
             $user->setEnabled(true);
+        $em->flush();
+        $session->getFlashBag()->add('success', "Your BabuSitter has been changed successfully");
+        return $this->redirect($this->generateUrl('back_user_babysiter_listes'));
+    }
+
+    public function validatedAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $session = $this->get('session');
+        $user=$em->find('BackUserBundle:User',$id);
+        if($user->getBabysitter()->getValidated())
+            $user->getBabysitter()->setValidated(false);
+        else
+            $user->getBabysitter()->setValidated(true);
         $em->flush();
         $session->getFlashBag()->add('success', "Your BabuSitter has been changed successfully");
         return $this->redirect($this->generateUrl('back_user_babysiter_listes'));

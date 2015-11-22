@@ -2,7 +2,8 @@
 {% block title %}list of babysitters{% endblock %}
 {% block breadcrumbs %}
     {{ parent() }}
-    <li {% if app.request.get('_route')=='front_babysitter_liste' %} class="active"{% endif %}><a href="{{ path('front_babysitter_liste') }}">list of babysitters</a></li>
+    <li {% if app.request.get('_route')=='front_babysitter_liste' %} class="active"{% endif %}>
+        <a href="{{ path('front_babysitter_liste') }}">list of babysitters</a></li>
 {% endblock %}
 {% block body %}
     <div class="container">
@@ -16,7 +17,14 @@
                             {% for babysitter in babysitters %}
                                 {% include 'FrontGeneralBundle:BabySitter/liste:artice.html.twig' %}
                             {% else %}
-                                <h3>NO BabySitters</h3>
+                            <div class="person-information booking-information">
+                                <div class="booking-confirmation clearfix">
+                                    <i class="soap-icon-notice icon circle" style="color: red;margin-top: -5px;"></i>
+                                    <div class="message">
+                                        <h4 class="main-message" style="color: red">No Babysitters available</h4>
+                                    </div>
+                                </div>
+                                </div>
                             {% endfor %}
                         </div>
                     </div>

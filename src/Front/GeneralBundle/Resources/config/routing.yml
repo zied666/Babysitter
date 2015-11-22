@@ -22,6 +22,10 @@ front_babysitter_liste:
         homeWorkHelp: all
         motCle: null
 
+front_babysitter_liste_filtre:
+    path:     /filtreBabySitter
+    defaults: { _controller: FrontGeneralBundle:BabySitter:filtre }
+
 
 front_babysitter_profile:
     path:     /babysitter/{slug}

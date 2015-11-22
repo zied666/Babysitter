@@ -1,6 +1,6 @@
 back_user_babysiter_listes:
-    path:     /liste/{page}
-    defaults: { _controller: BackUserBundle:BabySitter:liste,page:1 }
+    path:     /liste/{page}/{validated}
+    defaults: { _controller: BackUserBundle:BabySitter:liste,page:1,validated:all }
 
 back_user_babysiter_details:
     path:     /details/{id}
@@ -9,6 +9,10 @@ back_user_babysiter_details:
 back_user_babysiter_enable:
     path:     /enable/{id}
     defaults: { _controller: BackUserBundle:BabySitter:enable }
+
+back_user_babysiter_validated:
+    path:     /validated/{id}
+    defaults: { _controller: BackUserBundle:BabySitter:validated }
 
 back_user_babysiter_edit:
     path:     /edit/{id}
