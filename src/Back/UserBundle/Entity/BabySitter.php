@@ -234,6 +234,11 @@ class BabySitter
     private $twitter;
 
     /**
+     * @ORM\OneToOne(targetEntity="Disponibility",cascade={"persist"})
+     */
+    protected $disponibility;
+
+    /**
      * @var \DateTime
      *
      * @ORM\COlumn(name="updated_at",type="datetime", nullable=true)
@@ -1134,5 +1139,29 @@ class BabySitter
     public function getValidated()
     {
         return $this->validated;
+    }
+
+    /**
+     * Set disponibility
+     *
+     * @param \Back\UserBundle\Entity\Disponibility $disponibility
+     *
+     * @return BabySitter
+     */
+    public function setDisponibility(\Back\UserBundle\Entity\Disponibility $disponibility = null)
+    {
+        $this->disponibility = $disponibility;
+
+        return $this;
+    }
+
+    /**
+     * Get disponibility
+     *
+     * @return \Back\UserBundle\Entity\Disponibility
+     */
+    public function getDisponibility()
+    {
+        return $this->disponibility;
     }
 }

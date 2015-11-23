@@ -27,7 +27,7 @@ class BabySitter
     /**
      * @var boolean
      *
-     * @ORM\Column(name="validated", type="boolean",nullable=true)
+     * @ORM\Column(name="validated", type="boolean")
      */
     private $validated;
 
@@ -232,6 +232,11 @@ class BabySitter
      * @ORM\Column(name="twitter", type="string", length=255,nullable=true)
      */
     private $twitter;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Disponibility")
+     */
+    protected $disponibility;
 
     /**
      * @var \DateTime
@@ -1110,5 +1115,29 @@ class BabySitter
     public function getCountry()
     {
         return $this->country;
+    }
+
+    /**
+     * Set validated
+     *
+     * @param boolean $validated
+     *
+     * @return BabySitter
+     */
+    public function setValidated($validated)
+    {
+        $this->validated = $validated;
+
+        return $this;
+    }
+
+    /**
+     * Get validated
+     *
+     * @return boolean
+     */
+    public function getValidated()
+    {
+        return $this->validated;
     }
 }

@@ -48,6 +48,39 @@
                                         <div class="row">
                                             {{ formulaire.input("col-md-12","Adress",form.address,true) }}
                                         </div>
+                                        <hr>
+                                        <h3 class="section-title">Disponiblity</h3>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <table class="table table-condensed">
+                                                    <thead>
+                                                    <th></th>
+                                                    <th>Monday</th>
+                                                    <th>Tuesday</th>
+                                                    <th>Wednesday</th>
+                                                    <th>Thursday</th>
+                                                    <th>Friday</th>
+                                                    <th>Saturday</th>
+                                                    <th>Sunday</th>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for i in 1..4 %}
+                                                        <tr>
+                                                            <th>{% if i==1 %}Morning{% elseif i==2 %}Midday{% elseif i==3 %}Afternon{% else %}Night{% endif %}</th>
+                                                            <td>{{ formulaire.input("col-md-12",null,form.disponibility['lundi'~i],true) }}</td>
+                                                            <td>{{ formulaire.input("col-md-12",null,form.disponibility['mardi'~i],true) }}</td>
+                                                            <td>{{ formulaire.input("col-md-12",null,form.disponibility['mercredi'~i],true) }}</td>
+                                                            <td>{{ formulaire.input("col-md-12",null,form.disponibility['jeudi'~i],true) }}</td>
+                                                            <td>{{ formulaire.input("col-md-12",null,form.disponibility['vendredi'~i],true) }}</td>
+                                                            <td>{{ formulaire.input("col-md-12",null,form.disponibility['samedi'~i],true) }}</td>
+                                                            <td>{{ formulaire.input("col-md-12",null,form.disponibility['dimanche'~i],true) }}</td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                         <hr><h3 class="section-title">More Informations</h3>
                                         <hr>
                                         <div class="row">
@@ -72,6 +105,9 @@
                                             {{ formulaire.input("col-md-6","Google + Profile URL (Optional)",form.googlePlus,true) }}
                                             {{ formulaire.input("col-md-6","Twitter Profile URL (Optional)",form.twitter,true) }}
                                             {{ formulaire.input("col-md-6","LinkedIn Profile URL (Optional)",form.linkedIn,true) }}
+                                        </div>
+                                        <div class="no-display">
+                                            {{ form_rest(form) }}
                                         </div>
                                         {{ formulaire.submit("Submit") }}
                                         {{ form_end(form) }}

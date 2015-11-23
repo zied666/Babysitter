@@ -17,12 +17,14 @@
                                 <i class="soap-icon-notice icon circle" style="color: red"></i>
                                 <div class="message">
                                     <h4 class="main-message" style="color: red">Please complete Your Profile to validate it</h4>
+
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..</p>
                                 </div>
                             {% else %}
                                 <i class="soap-icon-check icon circle" style="color: green"></i>
                                 <div class="message">
                                     <h4 class="main-message" style="color: green">Your profile is validated</h4>
+
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..</p>
                                 </div>
                             {% endif %}
@@ -65,6 +67,39 @@
                         <div class="row">
                             {{ formulaire.input("col-md-4","Near To",form.near,true) }}
                             {{ formulaire.input("col-md-3","How Many KM",form.howManyKM,true) }}
+                        </div>
+                        <hr>
+                        <h3 class="section-title">Disponiblity</h3>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-condensed">
+                                    <thead>
+                                    <th></th>
+                                    <th>Monday</th>
+                                    <th>Tuesday</th>
+                                    <th>Wednesday</th>
+                                    <th>Thursday</th>
+                                    <th>Friday</th>
+                                    <th>Saturday</th>
+                                    <th>Sunday</th>
+                                    </thead>
+                                    <tbody>
+                                    {% for i in 1..4 %}
+                                        <tr>
+                                            <th>{% if i==1 %}Morning{% elseif i==2 %}Midday{% elseif i==3 %}Afternon{% else %}Night{% endif %}</th>
+                                            <td>{{ formulaire.input("col-md-12",null,form.disponibility['lundi'~i],true) }}</td>
+                                            <td>{{ formulaire.input("col-md-12",null,form.disponibility['mardi'~i],true) }}</td>
+                                            <td>{{ formulaire.input("col-md-12",null,form.disponibility['mercredi'~i],true) }}</td>
+                                            <td>{{ formulaire.input("col-md-12",null,form.disponibility['jeudi'~i],true) }}</td>
+                                            <td>{{ formulaire.input("col-md-12",null,form.disponibility['vendredi'~i],true) }}</td>
+                                            <td>{{ formulaire.input("col-md-12",null,form.disponibility['samedi'~i],true) }}</td>
+                                            <td>{{ formulaire.input("col-md-12",null,form.disponibility['dimanche'~i],true) }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <hr>
                         <h3 class="section-title">More Informations</h3>

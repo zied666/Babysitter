@@ -98,6 +98,41 @@
                                         </ul>
                                     </div>
                                 </div>
+                                {% if babysitter.disponibility is not null %}
+                                    <div class="row long-description">
+                                    <h2>Disponiblity</h2>
+                                    <div class="col-md-12">
+                                        <table class="table table-condensed table-bordered disponibility">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th style="text-align: center;">Monday</th>
+                                                    <th style="text-align: center;">Tuesday</th>
+                                                    <th style="text-align: center;">Wednesday</th>
+                                                    <th style="text-align: center;">Thursday</th>
+                                                    <th style="text-align: center;">Friday</th>
+                                                    <th style="text-align: center;">Saturday</th>
+                                                    <th style="text-align: center;">Sunday</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for i in 1..4 %}
+                                                <tr>
+                                                    <th>{% if i==1 %}Morning{% elseif i==2 %}Midday{% elseif i==3 %}Afternon{% else %}Night{% endif %}</th>
+                                                    <td>{{ babysitter.disponibility.getValue('lundi',i) }}</td>
+                                                    <td>{{ babysitter.disponibility.getValue('mardi',i) }}</td>
+                                                    <td>{{ babysitter.disponibility.getValue('mercredi',i) }}</td>
+                                                    <td>{{ babysitter.disponibility.getValue('jeudi',i) }}</td>
+                                                    <td>{{ babysitter.disponibility.getValue('vendredi',i) }}</td>
+                                                    <td>{{ babysitter.disponibility.getValue('samedi',i) }}</td>
+                                                    <td>{{ babysitter.disponibility.getValue('dimanche',i) }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                {% endif %}
                                 <div class="long-description">
                                     <h2>About me</h2>
                                     <p>{{ babysitter.shortDescription }}</p>
@@ -164,6 +199,19 @@
 {% block jquery %}
     <script type="text/javascript">
         tjq(document).ready(function () {
+            tjq(this).find('.disponibility td').each (function () {
+                tjq(this).css('text-align', 'center');
+                if (tjq(this).html() == 1)
+                {
+                    tjq(this).css('background', '#CEF6CE');
+                    tjq(this).html('<i class="soap-icon-check"></i>');
+                }
+                else
+                {
+                    tjq(this).css('background', '#F6CED8');
+                    tjq(this).html('<i class="soap-icon-close"></i>');
+                }
+            });
             // calendar panel
             var cal = new Calendar();
             var unavailable_days = [17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
