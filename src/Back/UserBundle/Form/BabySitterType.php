@@ -86,6 +86,18 @@ class BabySitterType extends AbstractType
                 'label'=>'Homework help',
                 'required'=>false
             ))
+            ->add('driversLicense','checkbox',array(
+                'label'=>"Driver's License",
+                'required'=>false
+            ))
+            ->add('cooking','checkbox',array(
+                'label'=>'Cooking',
+                'required'=>false
+            ))
+            ->add('videoGames','checkbox',array(
+                'label'=>'Videos Games',
+                'required'=>false
+            ))
             ->add('file')
             ->add('near')
             ->add('howManyKM','choice',array(

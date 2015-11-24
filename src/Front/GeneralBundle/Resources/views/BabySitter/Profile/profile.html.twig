@@ -9,6 +9,7 @@
         <div id="main">
             <div class="row">
                 <div id="main" class="col-md-9">
+                    {% if false %}
                     <div class="tab-container style1" id="hotel-main-content">
                         <ul class="tabs">
                             <li class="active"><a data-toggle="tab" href="#map-tab">Map</a></li>
@@ -52,8 +53,8 @@
                             </div>
                         </div>
                     </div>
-
-                    <div id="hotel-features" class="tab-container">
+                    {% endif %}
+                    <div class="tab-container">
                         <div class="tab-content">
                             <div class="tab-pane fade in active" id="hotel-description">
                                 <div class="intro table-wrapper full-width hidden-table-sms">
@@ -62,7 +63,7 @@
                                             <li><label>Name:</label>{{ babysitter }}</li>
                                             <li><label>Gender:</label>{{ babysitter.gender }}</li>
                                             <li><label>Phone:</label>{{ babysitter.phoneNumber }}</li>
-                                            <li><label>Birthday:</label>{{ babysitter.birthday|date('d/m/Y') }}</li>
+                                            <li><label>Birthday:</label>{{ babysitter.birthday|date('d/m/Y') }} ({{ age }})</li>
                                             <li><label>Religion:</label>{{ babysitter.religion }}</li>
                                             <li><label>Country:</label>{{ babysitter.country }}</li>
                                             <li><label>City:</label>{{ babysitter.city }}</li>
@@ -87,7 +88,7 @@
                                                 <label>Alcoholic:</label>{% if  babysitter.alcoholic %}Yes{% else %}No{% endif %}
                                             </li>
                                             <li>
-                                                <label>Provide sick care:</label>{% if  babysitter.provideSickCare %}Yes{% else %}No{% endif %}
+                                                <label>Provide sick care:</label>{% if  babysitter.provideSickCare %}hotel-color{% else %}No{% endif %}
                                             </li>
                                             <li>
                                                 <label>Special needs:</label>{% if  babysitter.specialNeeds %}Yes{% else %}No{% endif %}
@@ -97,6 +98,21 @@
                                             </li>
                                         </ul>
                                     </div>
+                                </div>
+                                <div class="block soap-icons hidden-xs">
+                                    <hr>
+                                    <div class="row add-clearfix">
+                                        <div class="col-sm-2"></div>
+                                        <div class="col-sm-1"><i style="font-size: 3.4em;" title="Smoker" class="soap-icon-smoking {% if  babysitter.smoker %}hotel-color{% endif %}"></i></div>
+                                        <div class="col-sm-1"><i style="font-size: 3.4em;" title="Cooking" class="soap-icon-breakfast {% if  babysitter.cooking %}hotel-color{% endif %}"></i></div>
+                                        <div class="col-sm-1"><i style="font-size: 3.4em;" title="Comfortable with pets" class="soap-icon-dog {% if  babysitter.pets %}hotel-color{% endif %}"></i></div>
+                                        <div class="col-sm-1"><i style="font-size: 3.4em;" title="Driver's License" class="soap-icon-car {% if  babysitter.driversLicense %}hotel-color{% endif %}"></i></div>
+                                        <div class="col-sm-1"><i style="font-size: 3.4em;" title="Homework" class="soap-icon-behance {% if  babysitter.homeWorkHelp %}hotel-color{% endif %}"></i></div>
+                                        <div class="col-sm-1"><i style="font-size: 3.4em;" title="Special needs" class="soap-icon-handicapaccessiable {% if  babysitter.specialNeeds %}hotel-color{% endif %}"></i></div>
+                                        <div class="col-sm-1"><i style="font-size: 3.4em;" title="Provide sick care" class="soap-icon-baggage-4 {% if  babysitter.provideSickCare %}hotel-color{% endif %}"></i></div>
+                                        <div class="col-sm-1"><i style="font-size: 3.4em;" title="Videos Games" class="soap-icon-joystick {% if  babysitter.videoGames %}hotel-color{% endif %}"></i></div>
+                                    </div>
+                                    <hr>
                                 </div>
                                 {% if babysitter.disponibility is not null %}
                                     <div class="row long-description">
@@ -146,41 +162,36 @@
                     <article class="detailed-logo">
                         <figure>
                             {% if babysitter.path is null %}
-                                <img src="https://placeholdit.imgix.net/~text?txtsize=25&txt=No%20Picture%20available&w=114&h=85"/>
+                                <img src="https://placeholdit.imgix.net/~text?txtsize=25&txt=No%20Picture%20available&w=240&h=125"/>
                             {% else %}
-                                <img src="{{ asset(babysitter.assetPath) }}" style="width:114px ;height:85px"/>
+                                <img src="{{ asset(babysitter.assetPath) }}" style="width:240px ;height:125px"/>
                             {% endif %}
                         </figure>
                         <div class="details">
-                            <h2 class="box-title">{{ babysitter }}
+                            <h2 class="box-title" style="margin-bottom: 10px">
+                                {{ babysitter }}
                                 <small>
                                     <i class="soap-icon-departure yellow-color"></i><span class="fourty-space">{{ babysitter.city }}, {{ babysitter.country|upper }}</span>
                                 </small>
                             </h2>
                             <p class="description">{{ babysitter.address }}</p>
 
-                            <div class="block clearfix">
+                            <div id="map-tab" class="tab-pane fade in active travelo-google-map"></div>
+                            <br>
+                            <ul class="social-icons clearfix">
                                 {% if babysitter.facebook  is not null %}
-                                    <div class='col-md-3'>
-                                        <a href="{{ babysitter.facebook }}" target="_blank" class="icon-box style1"><i class="soap-icon-facebook"></i> </a>
-                                    </div>
-                                {% endif %}
-                                {% if babysitter.googlePlus  is not null %}
-                                    <div class='col-md-3'>
-                                        <a href="{{ babysitter.googlePlus }}" target="_blank" class="icon-box style1"><i class="soap-icon-googleplus"></i> </a>
-                                    </div>
+                                    <li class="facebook"><a title="" href="{{ babysitter.facebook }}" target="_blank" data-toggle="tooltip" data-original-title="facebook"><i class="soap-icon-facebook"></i></a></li>
                                 {% endif %}
                                 {% if babysitter.twitter  is not null %}
-                                    <div class='col-md-3'>
-                                        <a href="{{ babysitter.twitter }}" target="_blank" class="icon-box style1"><i class="soap-icon-tumblr"></i> </a>
-                                    </div>
+                                    <li class="twitter"><a title="" href="{{ babysitter.twitter }}" target="_blank" data-toggle="tooltip" data-original-title="twitter"><i class="soap-icon-twitter"></i></a></li>
                                 {% endif %}
-                                {% if babysitter.linkedIn  is not null %}
-                                    <div class='col-md-3'>
-                                        <a href="{{ babysitter.linkedIn }}" target="_blank" class="icon-box style1"><i class="soap-icon-linkedin"></i> </a>
-                                    </div>
+                                {% if babysitter.googlePlus  is not null %}
+                                    <li class="googleplus"><a title="" href="{{ babysitter.googlePlus }}" target="_blank" data-toggle="tooltip" data-original-title="googleplus"><i class="soap-icon-googleplus"></i></a></li>
                                 {% endif %}
-                            </div>
+                                {% if babysitter.twitter  is not null %}
+                                    <li class="linkedin"><a title="" href="{{ babysitter.linkedIn }}" target="_blank" data-toggle="tooltip" data-original-title="linkedin"><i class="soap-icon-linkedin"></i></a></li>
+                                {% endif %}
+                            </ul>
                         </div>
                     </article>
                 </div>

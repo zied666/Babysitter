@@ -192,6 +192,27 @@ class BabySitter
     private $homeWorkHelp;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="cooking", type="boolean",nullable=true)
+     */
+    private $cooking;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="driversLicense", type="boolean",nullable=true)
+     */
+    private $driversLicense;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="videoGames", type="boolean",nullable=true)
+     */
+    private $videoGames;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="education", type="string", length=255)
@@ -1163,5 +1184,77 @@ class BabySitter
     public function getDisponibility()
     {
         return $this->disponibility;
+    }
+
+    /**
+     * Set cooking
+     *
+     * @param boolean $cooking
+     *
+     * @return BabySitter
+     */
+    public function setCooking($cooking)
+    {
+        $this->cooking = $cooking;
+
+        return $this;
+    }
+
+    /**
+     * Get cooking
+     *
+     * @return boolean
+     */
+    public function getCooking()
+    {
+        return $this->cooking;
+    }
+
+    /**
+     * Set driversLicense
+     *
+     * @param boolean $driversLicense
+     *
+     * @return BabySitter
+     */
+    public function setDriversLicense($driversLicense)
+    {
+        $this->driversLicense = $driversLicense;
+
+        return $this;
+    }
+
+    /**
+     * Get driversLicense
+     *
+     * @return boolean
+     */
+    public function getDriversLicense()
+    {
+        return $this->driversLicense;
+    }
+
+    /**
+     * Set videoGames
+     *
+     * @param boolean $videoGames
+     *
+     * @return BabySitter
+     */
+    public function setVideoGames($videoGames)
+    {
+        $this->videoGames = $videoGames;
+
+        return $this;
+    }
+
+    /**
+     * Get videoGames
+     *
+     * @return boolean
+     */
+    public function getVideoGames()
+    {
+        return $this->videoGames;
     }
 }

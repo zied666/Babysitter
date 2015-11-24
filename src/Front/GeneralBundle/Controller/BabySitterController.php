@@ -32,6 +32,6 @@ class BabySitterController extends Controller
     {
         $em=$this->getDoctrine()->getManager();
         $babysitter=$em->getRepository('BackUserBundle:BabySitter')->findOneBySlug($slug);
-        return $this->render('FrontGeneralBundle:BabySitter/Profile:profile.html.twig', array('babysitter' => $babysitter));
+        return $this->render('FrontGeneralBundle:BabySitter/Profile:profile.html.twig', array('babysitter' => $babysitter,'age'=>$babysitter->getBirthday()->diff(new \DateTime())->y));
     }
 }

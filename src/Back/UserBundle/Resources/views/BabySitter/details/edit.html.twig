@@ -84,20 +84,34 @@
                                         <hr><h3 class="section-title">More Informations</h3>
                                         <hr>
                                         <div class="row">
-                                            {{ formulaire.select2("col-md-12","Languages",form.languages,true) }}
-                                        </div>
-                                        <div class="row">
                                             {{ formulaire.input("col-md-4","Years Experiance",form.yearsExperiance,true) }}
                                             {{ formulaire.input("col-md-4","N° of kids able to carry ",form.kidsAbleCarry,true) }}
                                             {{ formulaire.input("col-md-4","Education",form.education,true) }}
                                         </div>
+                                        <hr>
                                         <div class="row">
-                                            {{ formulaire.input("col-md-12",null,form.pets,true) }}
-                                            {{ formulaire.input("col-md-12",null,form.smoker,true) }}
-                                            {{ formulaire.input("col-md-12",null,form.alcoholic,true) }}
-                                            {{ formulaire.input("col-md-12",null,form.provideSickCare,true) }}
-                                            {{ formulaire.input("col-md-12",null,form.specialNeeds,true) }}
-                                            {{ formulaire.input("col-md-12",null,form.homeWorkHelp,true) }}
+                                            <div class="col-md-4">
+                                                <div class="row">
+                                                    {{ formulaire.select2("col-md-12","Languages",form.languages,true) }}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="row">
+                                                    {{ formulaire.input("col-md-12",null,form.pets,true) }}
+                                                    {{ formulaire.input("col-md-12",null,form.smoker,true) }}
+                                                    {{ formulaire.input("col-md-12",null,form.alcoholic,true) }}
+                                                    {{ formulaire.input("col-md-12",null,form.provideSickCare,true) }}
+                                                    {{ formulaire.input("col-md-12",null,form.specialNeeds,true) }}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="row">
+                                                    {{ formulaire.input("col-md-12",null,form.homeWorkHelp,true) }}
+                                                    {{ formulaire.input("col-md-12",null,form.driversLicense,true) }}
+                                                    {{ formulaire.input("col-md-12",null,form.cooking,true) }}
+                                                    {{ formulaire.input("col-md-12",null,form.videoGames,true) }}
+                                                </div>
+                                            </div>
                                         </div>
                                         <hr><h3 class="section-title">Social Network</h3><hr>
                                         <div class="row">
