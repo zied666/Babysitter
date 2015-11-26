@@ -1,0 +1,25 @@
+<div class="section container">
+    <h2>Last Baby-sitters</h2>
+    <div class="row image-box style3">
+        {% for babysitter in lastBabySitters %}
+            <div class="col-sms-6 col-sm-6 col-md-3">
+                <article class="box">
+                    <figure class="animated" data-animation-type="fadeInDown" data-animation-delay="0">
+                        <a href="{{ path('front_babysitter_profile',{'slug':babysitter.slug}) }}" >
+                            {% if babysitter.path is null %}
+                                <img src="https://placeholdit.imgix.net/~text?txtsize=25&txt=No%20Picture%20available&w=270&h=160" />
+                            {% else %}
+                                <img src="{{ asset(babysitter.assetPath) }}" style="width:270px ;height:160px" />
+                            {% endif %}
+                        </a>
+                    </figure>
+                    <div class="details text-center">
+                        <h4 class="box-title">{{ babysitter }}</h4>
+                        <p class="offers-content">{{ babysitter.city }}, {{ babysitter.country|upper }}</p>
+                        <a class="button block" href="{{ path('front_babysitter_profile',{'slug':babysitter.slug}) }}">SEE ALL</a>
+                    </div>
+                </article>
+            </div>
+        {% endfor %}
+    </div>
+</div>

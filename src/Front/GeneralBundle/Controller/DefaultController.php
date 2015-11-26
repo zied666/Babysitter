@@ -8,6 +8,10 @@ class DefaultController extends Controller
 {
     public function homePageAction()
     {
-        return $this->render('FrontGeneralBundle:HomePage:homepage.html.twig');
+        $em=$this->getDoctrine()->getManager();
+        $lastBabySitters=$em->getRepository('BackUserBundle:BabySitter')->last4BabySitter();
+        return $this->render('FrontGeneralBundle:HomePage:homepage.html.twig',array(
+            'lastBabySitters'=>$lastBabySitters
+        ));
     }
 }

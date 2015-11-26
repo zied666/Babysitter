@@ -27,18 +27,21 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-2">
-                                                <img class="middle-item" src="{% if user.babysitter.path is null %}https://placeholdit.imgix.net/~text?txtsize=20&txt=No%20Picture&w=80&h=80{% else %}{{ asset(user.babysitter.assetPath) }}{% endif %}" style="width: 80px;height: 80px"/> </a>
+                                                <img class="middle-item" src="{% if user.babysitter.path is null %}https://placeholdit.imgix.net/~text?txtsize=20&txt=No%20Picture&w=80&h=80{% else %}{{ asset(user.babysitter.assetPath) }}{% endif %}" style="width: 80px;height: 80px"/>
+                                                </a>
                                             </div>
                                             {{ formulaire.input("col-md-3","Picture",form.file,true) }}
                                             {{ formulaire.input("col-md-3","Religion",form.religion,true) }}
                                             {{ formulaire.input("col-md-3","Birthday",form.birthday,true) }}
                                         </div>
-                                        <hr><h3 class="section-title">About Me</h3>
+                                        <hr>
+                                        <h3 class="section-title">About Me</h3>
                                         <hr>
                                         <div class="row">
                                             {{ formulaire.input("col-md-12",null,form.shortDescription,true) }}
                                         </div>
-                                        <hr><h3 class="section-title">Location</h3>
+                                        <hr>
+                                        <h3 class="section-title">Location</h3>
                                         <hr>
                                         <div class="row">
                                             {{ formulaire.input("col-md-4","city",form.city,true) }}
@@ -81,7 +84,8 @@
                                                 </table>
                                             </div>
                                         </div>
-                                        <hr><h3 class="section-title">More Informations</h3>
+                                        <hr>
+                                        <h3 class="section-title">More Informations</h3>
                                         <hr>
                                         <div class="row">
                                             {{ formulaire.input("col-md-4","Years Experiance",form.yearsExperiance,true) }}
@@ -113,7 +117,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <hr><h3 class="section-title">Social Network</h3><hr>
+                                        <hr>
+                                        <h3 class="section-title">Social Network</h3>
+                                        <hr>
                                         <div class="row">
                                             {{ formulaire.input("col-md-6","Facebook Profile URL (Optional)",form.facebook,true) }}
                                             {{ formulaire.input("col-md-6","Google + Profile URL (Optional)",form.googlePlus,true) }}

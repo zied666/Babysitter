@@ -1,0 +1,82 @@
+<div class="search-box-wrapper">
+    <div class="search-box container">
+        <div class="search-tab-content" style="padding: 50px 0;">
+            <div class="tab-pane fade active in" id="hotels-tab">
+                <form action="{{ path('front_babysitter_liste') }}" method="post">
+                    <input type="hidden" name="homeWorkHelpSearch" value="all">
+                    <input type="hidden" name="smokerSearch" value="all">
+                    <input type="hidden" name="specialNeedsSearch" value="all">
+                    <input type="hidden" name="provideSickCareSearch" value="all">
+                    <input type="hidden" name="petsSearch" value="all">
+                    <div class="row">
+                        <div class="form-group col-sm-6 col-md-4">
+                            <h4 class="title">Where</h4>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label>Country</label>
+                                    <div class="selector">
+                                        <select class="full-width" name="countrySearch">
+                                            <option value="all">All</option>
+                                            {% for country in getCountries() %}
+                                                <option value="{{ country.country }}" {% if app.request.get('country')==country.country %}selected{% endif %}>{{ country.country }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label>City</label>
+                                    <div class="selector">
+                                        <select class="full-width" name="citySearch">
+                                            <option value="all">All</option>
+                                            {% for city in getCities() %}
+                                                <option value="{{ city.city }}">{{ city.city }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6 col-md-6">
+                            <h4 class="title">Who</h4>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <label>Gender</label>
+                                    <div class="selector">
+                                        <select class="full-width" name="genderSearch">
+                                            <option value="all">All</option>
+                                            <option value="Male" {% if app.request.get('gender')=='Male' %}selected{% endif %}>Male</option>
+                                            <option value="Female" {% if app.request.get('gender')=='Female' %}selected{% endif %}>Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <label>Langauges</label>
+                                    <div class="selector">
+                                        <select class="full-width" name="languagesSearch">
+                                            <option value="all">All</option>
+                                            <option value="English" {% if app.request.get('languages')=='English' %}selected{% endif %}>English</option>
+                                            <option value="French" {% if app.request.get('languages')=='French' %}selected{% endif %}>French</option>
+                                            <option value="Deutsh" {% if app.request.get('languages')=='Deutsh' %}selected{% endif %}>Deutsh</option>
+                                            <option value="Spanish" {% if app.request.get('languages')=='Spanish' %}selected{% endif %}>Spanish</option>
+                                            <option value="Arabic" {% if app.request.get('languages')=='Arabic' %}selected{% endif %}>Arabic</option>
+                                            <option value="Chinese" {% if app.request.get('languages')=='Chinese' %}selected{% endif %}>Chinese</option>
+                                            <option value="Japanese" {% if app.request.get('languages')=='Japanese' %}selected{% endif %}>Japanese</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <label>Keywords</label>
+                                    <input type="text" name="motCleSearch" class="input-text full-width" placeholder="Country, City, Name, ..." value="{{ app.request.get('motCle') }}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6 col-md-2 fixheight">
+                            <label class="hidden-xs">&nbsp;</label>
+                            <button type="submit" class="full-width icon-check animated" data-animation-type="bounce" data-animation-duration="1">SEARCH NOW</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

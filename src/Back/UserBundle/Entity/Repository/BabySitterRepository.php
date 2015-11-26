@@ -47,6 +47,18 @@
             }
             return $qb->getQuery()->getResult();
         }
+
+        public function last4BabySitter()
+        {
+            $qb = $this->createQueryBuilder('b');
+            $qb->where('b.validated = TRUE')
+                ->orderBy('b.id','desc')
+                ->setMaxResults(4);
+            return $qb->getQuery()->getResult();
+        }
+
+
+
         public function getCountries()
         {
             $qb = $this->createQueryBuilder('b');
