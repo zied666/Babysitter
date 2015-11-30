@@ -1,0 +1,49 @@
+<div class="sidebar col-md-3">
+    <article class="detailed-logo">
+        <figure>
+            {% if babysitter.path is null %}
+                <img src="https://placeholdit.imgix.net/~text?txtsize=25&txt=No%20Picture%20available&w=240&h=125"/>
+            {% else %}
+                <img src="{{ asset(babysitter.assetPath) }}" style="width:240px ;height:125px"/>
+            {% endif %}
+        </figure>
+        <div class="details">
+            <h2 class="box-title" style="margin-bottom: 10px">
+                {{ babysitter }}
+                <small>
+                    <i class="soap-icon-departure yellow-color"></i><span class="fourty-space">{{ babysitter.city }}, {{ babysitter.country|upper }}</span>
+                </small>
+                <small>
+                    <i class="soap-icon-user  black-colo"></i><span class="fourty-space">{{ age }} years old</span>
+                </small>
+                <small>
+                    <i class="soap-icon-skype  blue-color"></i><span class="fourty-space">{{ babysitter.skype }}</span>
+                </small>
+                <small>
+                    <i class="soap-icon-phone  red-color"></i><span class="fourty-space">{{ babysitter.phoneNumber }}</span>
+                </small>
+                <small>
+                    <i class="soap-icon-generalmessage  red-color"></i><span class="fourty-space">{{ babysitter.email }}</span>
+                </small>
+            </h2>
+            <p class="description">{{ babysitter.address }}</p>
+
+            <div id="map-tab" class="tab-pane fade in active travelo-google-map"></div>
+            <br>
+            <ul class="social-icons clearfix">
+                {% if babysitter.facebook  is not null %}
+                    <li class="facebook"><a title="" href="{{ babysitter.facebook }}" target="_blank" data-toggle="tooltip" data-original-title="facebook"><i class="soap-icon-facebook"></i></a></li>
+                {% endif %}
+                {% if babysitter.twitter  is not null %}
+                    <li class="twitter"><a title="" href="{{ babysitter.twitter }}" target="_blank" data-toggle="tooltip" data-original-title="twitter"><i class="soap-icon-twitter"></i></a></li>
+                {% endif %}
+                {% if babysitter.googlePlus  is not null %}
+                    <li class="googleplus"><a title="" href="{{ babysitter.googlePlus }}" target="_blank" data-toggle="tooltip" data-original-title="googleplus"><i class="soap-icon-googleplus"></i></a></li>
+                {% endif %}
+                {% if babysitter.twitter  is not null %}
+                    <li class="linkedin"><a title="" href="{{ babysitter.linkedIn }}" target="_blank" data-toggle="tooltip" data-original-title="linkedin"><i class="soap-icon-linkedin"></i></a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </article>
+</div>

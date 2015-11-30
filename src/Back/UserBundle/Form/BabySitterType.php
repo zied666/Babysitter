@@ -120,6 +120,8 @@ class BabySitterType extends AbstractType
             ->add('googlePlus')
             ->add('linkedIn')
             ->add('twitter')
+            ->add('skype')
+            ->add('email')
             ->add('disponibility',new DisponibilityType());
         ;
     }

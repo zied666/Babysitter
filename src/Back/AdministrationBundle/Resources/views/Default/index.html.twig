@@ -1,5 +1,54 @@
 {% extends ':Back:base.html.twig' %}
 {% block title %}Dashboard{% endblock %}
 {% block body %}
-    Dashboard
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <a href="{{ path('back_administration_admins') }}">
+                                <button type="button" class="btn btn-icon btn-block">
+                                    <i class="fa fa-user"></i>
+                                    Administrators
+                                    <span class="badge badge-danger"> {{ countAdmin }} </span>
+                                </button>
+                            </a>
+                        </div>
+                        <div class="col-sm-4">
+                            <a href="{{ path('back_user_babysiter_listes') }}">
+                                <button type="button" class="btn btn-icon btn-block">
+                                    <i class="fa fa-user"></i>
+                                    Baby-sitters
+                                    <span class="badge badge-danger"> {{ countBabysitter }} </span>
+                                </button>
+                            </a>
+                        </div>
+                        <div class="col-sm-4">
+                            <a href="{{ path('back_user_parent_listes') }}">
+                                <button type="button" class="btn btn-icon btn-block">
+                                    <i class="fa fa-group"></i>
+                                    Parents
+                                    <span class="badge badge-danger"> {{ countParent }}</span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset("back-assets/plugins/flot/jquery.flot.js") }}" ></script>
+    <script src="{{ asset("back-assets/plugins/flot/jquery.flot.resize.min.js") }}"></script>
+    <script src="{{ asset("back-assets/plugins/flot/jquery.flot.categories.min.js") }}"></script>
+    <script src="{{ asset("back-assets/plugins/flot/jquery.flot.pie.js") }}"></script>
+    <script src="{{ asset("back-assets/js/charts.js") }}"></script>
+    <script>
+        jQuery(document).ready(function () {
+            Charts.init();
+        });
+    </script>
 {% endblock %}

@@ -17,7 +17,7 @@
                             <th>Email</th>
                             <th>Last login</th>
                             <th>State</th>
-                            <th>Action</th>
+                            {#<th>Action</th>#}
                         </tr>
                         </thead>
                         <tbody>
@@ -34,9 +34,9 @@
                                         <a href="{{ path('back_user_parent_enable',{'id':user.id}) }}"><span class="label label-sm label-danger">Disabled</span></a>
                                     {% endif %}
                                 </td>
-                                <td class="center">
+                                {#<td class="center">#}
                                     {#{{ macros.boutton(path('back_user_babysiter_details',{'id':user.id}),'fa-eye','btn-dark-grey',"Details") }}#}
-                                </td>
+                                {#</td>#}
                             </tr>
                         {% endfor %}
                         </tbody>

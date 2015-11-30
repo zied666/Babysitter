@@ -21,7 +21,7 @@
                         <div class="form-group">
                             <label>Country</label>
                             <div class="selector">
-                                <select class="full-width" name="countrySearch">
+                                <select class="full-width" name="countrySearch" id="SelectCountry">
                                     <option value="all">All</option>
                                     {% for country in getCountries() %}
                                         <option value="{{ country.country }}" {% if app.request.get('country')==country.country %}selected{% endif %}>{{ country.country }}</option>
@@ -32,7 +32,7 @@
                         <div class="form-group">
                             <label>City</label>
                             <div class="selector">
-                                <select class="full-width" name="citySearch">
+                                <select class="full-width" name="citySearch" id="SelectCity">
                                     <option value="all">All</option>
                                     {% for city in getCities(app.request.get('country')) %}
                                         <option value="{{ city.city }}" {% if app.request.get('city')==city.city %}selected{% endif %}>{{ city.city }}</option>

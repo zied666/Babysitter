@@ -17,14 +17,18 @@
                                 <i class="soap-icon-notice icon circle" style="color: red"></i>
                                 <div class="message">
                                     <h4 class="main-message" style="color: red">Please complete Your Profile to validate it</h4>
-
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..</p>
+                                </div>
+                            {% elseif not babysitter.validated %}
+                                <i class="soap-icon-notice icon circle" style="color: red"></i>
+                                <div class="message">
+                                    <h4 class="main-message" style="color: red">Your account is awaiting for administrator's validation</h4>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..</p>
                                 </div>
                             {% else %}
                                 <i class="soap-icon-check icon circle" style="color: green"></i>
                                 <div class="message">
                                     <h4 class="main-message" style="color: green">Your profile is validated</h4>
-
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..</p>
                                 </div>
                             {% endif %}
@@ -140,6 +144,8 @@
                         <h3 class="section-title">Social Network</h3>
                         <hr>
                         <div class="row">
+                            {{ formulaire.input("col-md-6","Skype  (Optional)",form.skype,true) }}
+                            {{ formulaire.input("col-md-6","Email",form.email,true) }}
                             {{ formulaire.input("col-md-6","Facebook Profile URL (Optional)",form.facebook,true) }}
                             {{ formulaire.input("col-md-6","Google + Profile URL (Optional)",form.googlePlus,true) }}
                             {{ formulaire.input("col-md-6","Twitter Profile URL (Optional)",form.twitter,true) }}

@@ -19,7 +19,7 @@ class ProfileBabySitterController extends Controller
         else
         {
             $babysitter=new BabySitter();
-            $babysitter->setLastName($user->getLastName())->setFirstName($user->getFirstName());
+            $babysitter->setLastName($user->getLastName())->setFirstName($user->getFirstName())->setEmail($user->getEmail());
         }
         $form=$this->createForm(new BabySitterType(),$babysitter);
         if($this->getRequest()->isMethod('POST'))

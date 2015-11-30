@@ -26,7 +26,7 @@
                             <input type="hidden" name="languagesSearch" value="all">
                             <div class="row">
                                 <div class="col-xs-6 col-md-12">
-                                    <input type="text" name="motCleSearch" class="input-text input-large full-width" value="" placeholder="Enter Countru or city name"/>
+                                    <input type="text" name="motCleSearch" class="input-text input-large full-width" value="" placeholder="Enter Country or city name"/>
                                 </div>
                                 <div class="col-xs-6 col-md-12">
                                     <button class="full-width btn-large">Search</button>
@@ -41,5 +41,29 @@
             </div>
         </div>
     </div>
-
+{% endblock %}
+{% block jquery %}
+    <script>
+        tjq(document).ready(function(){
+            tjq('#SelectCountry').on('change',function(){
+                var country=tjq(this).val();
+                tjq('#SelectCity').empty();
+                tjq('#SelectCity').append('<option>Loading...</option>');
+                updateTraveloElementUI(tjq('#SelectCity'));
+                tjq.ajax({
+                    url: '{{ path('front_ajax_country_to_city') }}',
+                    data: { 'country' : country },
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(json) {
+                        tjq('#SelectCity').empty();
+                        json.forEach(function (value) {
+                            tjq('#SelectCity').append('<option value="'+ value +'">'+ value +'</option>');
+                        });
+                        updateTraveloElementUI(tjq('#SelectCity'));
+                    }
+                });
+            })
+        })
+    </script>
 {% endblock %}

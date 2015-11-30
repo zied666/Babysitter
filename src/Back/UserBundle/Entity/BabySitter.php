@@ -255,6 +255,20 @@ class BabySitter
     private $twitter;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="skype", type="string", length=255,nullable=true)
+     */
+    private $skype;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    private $email;
+
+    /**
      * @ORM\OneToOne(targetEntity="Disponibility",cascade={"persist"})
      */
     protected $disponibility;
@@ -1256,5 +1270,53 @@ class BabySitter
     public function getVideoGames()
     {
         return $this->videoGames;
+    }
+
+    /**
+     * Set skype
+     *
+     * @param string $skype
+     *
+     * @return BabySitter
+     */
+    public function setSkype($skype)
+    {
+        $this->skype = $skype;
+
+        return $this;
+    }
+
+    /**
+     * Get skype
+     *
+     * @return string
+     */
+    public function getSkype()
+    {
+        return $this->skype;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return BabySitter
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 }

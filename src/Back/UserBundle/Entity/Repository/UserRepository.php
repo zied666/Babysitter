@@ -15,6 +15,17 @@
             return $qb->getQuery()->getResult();
         }
 
+        public function countByRole($roles)
+        {
+            $qb = $this->createQueryBuilder('u');
+            $qb->select('count(u.id)');
+            $orX = $qb->expr()->orX();
+            foreach ($roles as $role)
+                $orX->add( $qb->expr()->like('u.roles', "'%".$role."%'"));
+            $qb->where($orX);
+            return $qb->getQuery()->getSingleScalarResult();
+        }
+
         public function findBabySitter($validated='all')
         {
             $qb = $this->createQueryBuilder('u');

@@ -36,3 +36,28 @@
         </div>
     </div>
 {% endblock %}
+{% block jquery %}
+    <script>
+        tjq(document).ready(function(){
+            tjq('#SelectCountry').on('change',function(){
+                var country=tjq(this).val();
+                tjq('#SelectCity').empty();
+                tjq('#SelectCity').append('<option>Loading...</option>');
+                updateTraveloElementUI(tjq('#SelectCity'));
+                tjq.ajax({
+                    url: '{{ path('front_ajax_country_to_city') }}',
+                    data: { 'country' : country },
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(json) {
+                        tjq('#SelectCity').empty();
+                        json.forEach(function (value) {
+                            tjq('#SelectCity').append('<option value="'+ value +'">'+ value +'</option>');
+                        });
+                        updateTraveloElementUI(tjq('#SelectCity'));
+                    }
+                });
+            })
+        })
+    </script>
+{% endblock %}

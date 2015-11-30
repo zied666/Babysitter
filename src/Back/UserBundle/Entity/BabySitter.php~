@@ -255,6 +255,20 @@ class BabySitter
     private $twitter;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="skype", type="string", length=255,nullable=true)
+     */
+    private $skype;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    private $email;
+
+    /**
      * @ORM\OneToOne(targetEntity="Disponibility",cascade={"persist"})
      */
     protected $disponibility;
@@ -1184,5 +1198,101 @@ class BabySitter
     public function getDisponibility()
     {
         return $this->disponibility;
+    }
+
+    /**
+     * Set cooking
+     *
+     * @param boolean $cooking
+     *
+     * @return BabySitter
+     */
+    public function setCooking($cooking)
+    {
+        $this->cooking = $cooking;
+
+        return $this;
+    }
+
+    /**
+     * Get cooking
+     *
+     * @return boolean
+     */
+    public function getCooking()
+    {
+        return $this->cooking;
+    }
+
+    /**
+     * Set driversLicense
+     *
+     * @param boolean $driversLicense
+     *
+     * @return BabySitter
+     */
+    public function setDriversLicense($driversLicense)
+    {
+        $this->driversLicense = $driversLicense;
+
+        return $this;
+    }
+
+    /**
+     * Get driversLicense
+     *
+     * @return boolean
+     */
+    public function getDriversLicense()
+    {
+        return $this->driversLicense;
+    }
+
+    /**
+     * Set videoGames
+     *
+     * @param boolean $videoGames
+     *
+     * @return BabySitter
+     */
+    public function setVideoGames($videoGames)
+    {
+        $this->videoGames = $videoGames;
+
+        return $this;
+    }
+
+    /**
+     * Get videoGames
+     *
+     * @return boolean
+     */
+    public function getVideoGames()
+    {
+        return $this->videoGames;
+    }
+
+    /**
+     * Set skype
+     *
+     * @param string $skype
+     *
+     * @return BabySitter
+     */
+    public function setSkype($skype)
+    {
+        $this->skype = $skype;
+
+        return $this;
+    }
+
+    /**
+     * Get skype
+     *
+     * @return string
+     */
+    public function getSkype()
+    {
+        return $this->skype;
     }
 }

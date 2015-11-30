@@ -30,3 +30,8 @@ front_babysitter_liste_filtre:
 front_babysitter_profile:
     path:     /babysitter/{slug}
     defaults: { _controller: FrontGeneralBundle:BabySitter:babysiter,page:1 }
+
+
+front_ajax_country_to_city:
+    path:     /front_ajax_country_to_city
+    defaults: { _controller: FrontGeneralBundle:BabySitter:ajaxCountryToCity }

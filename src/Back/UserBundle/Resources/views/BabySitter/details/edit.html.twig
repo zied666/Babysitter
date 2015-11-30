@@ -121,6 +121,8 @@
                                         <h3 class="section-title">Social Network</h3>
                                         <hr>
                                         <div class="row">
+                                            {{ formulaire.input("col-md-6","Email",form.email,true) }}
+                                            {{ formulaire.input("col-md-6","Skype (Optional)",form.skype,true) }}
                                             {{ formulaire.input("col-md-6","Facebook Profile URL (Optional)",form.facebook,true) }}
                                             {{ formulaire.input("col-md-6","Google + Profile URL (Optional)",form.googlePlus,true) }}
                                             {{ formulaire.input("col-md-6","Twitter Profile URL (Optional)",form.twitter,true) }}

@@ -4,7 +4,7 @@ security:
         FOS\UserBundle\Model\UserInterface: sha512
 
     role_hierarchy:
-        ROLE_PARENT:        ROLE_USER
+        ROLE_PARRENT:        ROLE_USER
         ROLE_BABYSITTER:    ROLE_USER
         ROLE_ADMIN:         ROLE_USER
         ROLE_SUPER_ADMIN:   ROLE_ADMIN
@@ -28,5 +28,5 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
-        - { path: ^/parents_space/, role: ROLE_PARENT }
+        - { path: ^/parents_space/, role: ROLE_PARRENT }
         - { path: ^/baby_sitter_space/, role: ROLE_BABYSITTER }
