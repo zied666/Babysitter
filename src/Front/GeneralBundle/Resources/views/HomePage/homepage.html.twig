@@ -1,69 +1,71 @@
-{% extends ":Front:base.html.twig" %}
-{% block body %}
-    {% include 'FrontGeneralBundle:HomePage:form.html.twig' %}
-    {% include 'FrontGeneralBundle:HomePage:lastBabySitters.html.twig' %}
-    <div class="global-map-area promo-box no-margin parallax" data-stellar-background-ratio="0.5">
-        <div class="container">
-            <div class="content-section description pull-right col-sm-9">
-                <div class="table-wrapper hidden-table-sm">
-                    <div class="table-cell">
-                        <h2 class="m-title animated" data-animation-type="fadeInDown" data-animation-duration="1.5">
-                            <em>
-                                We've helped thousands of parents find their perfect child care solution. Here's what they had to say:
-                            </em>
-                        </h2>
-                    </div>
-                    <div class="table-cell action-section col-md-4 no-float">
-                        <form method="post" action="{{ path('front_babysitter_liste') }}">
-                            <input type="hidden" name="homeWorkHelpSearch" value="all">
-                            <input type="hidden" name="smokerSearch" value="all">
-                            <input type="hidden" name="specialNeedsSearch" value="all">
-                            <input type="hidden" name="provideSickCareSearch" value="all">
-                            <input type="hidden" name="petsSearch" value="all">
-                            <input type="hidden" name="countrySearch" value="all">
-                            <input type="hidden" name="citySearch" value="all">
-                            <input type="hidden" name="genderSearch" value="all">
-                            <input type="hidden" name="languagesSearch" value="all">
-                            <div class="row">
-                                <div class="col-xs-6 col-md-12">
-                                    <input type="text" name="motCleSearch" class="input-text input-large full-width" value="" placeholder="Enter Country or city name"/>
+{% if false %}
+    {% extends ":Front:base.html.twig" %}
+    {% block body %}
+        {% include 'FrontGeneralBundle:HomePage:form.html.twig' %}
+        {% include 'FrontGeneralBundle:HomePage:lastBabySitters.html.twig' %}
+        <div class="global-map-area promo-box no-margin parallax" data-stellar-background-ratio="0.5">
+            <div class="container">
+                <div class="content-section description pull-right col-sm-9">
+                    <div class="table-wrapper hidden-table-sm">
+                        <div class="table-cell">
+                            <h2 class="m-title animated" data-animation-type="fadeInDown" data-animation-duration="1.5">
+                                <em>
+                                    We've helped thousands of parents find their perfect child care solution. Here's what they had to say:
+                                </em>
+                            </h2>
+                        </div>
+                        <div class="table-cell action-section col-md-4 no-float">
+                            <form method="post" action="{{ path('front_babysitter_liste') }}">
+                                <input type="hidden" name="homeWorkHelpSearch" value="all">
+                                <input type="hidden" name="smokerSearch" value="all">
+                                <input type="hidden" name="specialNeedsSearch" value="all">
+                                <input type="hidden" name="provideSickCareSearch" value="all">
+                                <input type="hidden" name="petsSearch" value="all">
+                                <input type="hidden" name="countrySearch" value="all">
+                                <input type="hidden" name="citySearch" value="all">
+                                <input type="hidden" name="genderSearch" value="all">
+                                <input type="hidden" name="languagesSearch" value="all">
+                                <div class="row">
+                                    <div class="col-xs-6 col-md-12">
+                                        <input type="text" name="motCleSearch" class="input-text input-large full-width" value="" placeholder="Enter Country or city name"/>
+                                    </div>
+                                    <div class="col-xs-6 col-md-12">
+                                        <button class="full-width btn-large">Search</button>
+                                    </div>
                                 </div>
-                                <div class="col-xs-6 col-md-12">
-                                    <button class="full-width btn-large">Search</button>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="image-container col-sm-4">
-                <img src="{{ asset('front-assets/images/sliders/revolution_slider/slider2/slide1/girl2.png') }}" alt="" width="342" height="258" class="animated" data-animation-type="fadeInUp"/>
+                <div class="image-container col-sm-4">
+                    <img src="{{ asset('front-assets/images/sliders/revolution_slider/slider2/slide1/girl2.png') }}" alt="" width="342" height="258" class="animated" data-animation-type="fadeInUp"/>
+                </div>
             </div>
         </div>
-    </div>
-{% endblock %}
-{% block jquery %}
-    <script>
-        tjq(document).ready(function(){
-            tjq('#SelectCountry').on('change',function(){
-                var country=tjq(this).val();
-                tjq('#SelectCity').empty();
-                tjq('#SelectCity').append('<option>Loading...</option>');
-                updateTraveloElementUI(tjq('#SelectCity'));
-                tjq.ajax({
-                    url: '{{ path('front_ajax_country_to_city') }}',
-                    data: { 'country' : country },
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function(json) {
-                        tjq('#SelectCity').empty();
-                        json.forEach(function (value) {
-                            tjq('#SelectCity').append('<option value="'+ value +'">'+ value +'</option>');
-                        });
-                        updateTraveloElementUI(tjq('#SelectCity'));
-                    }
-                });
+    {% endblock %}
+    {% block jquery %}
+        <script>
+            tjq(document).ready(function(){
+                tjq('#SelectCountry').on('change',function(){
+                    var country=tjq(this).val();
+                    tjq('#SelectCity').empty();
+                    tjq('#SelectCity').append('<option>Loading...</option>');
+                    updateTraveloElementUI(tjq('#SelectCity'));
+                    tjq.ajax({
+                        url: '{{ path('front_ajax_country_to_city') }}',
+                        data: { 'country' : country },
+                        type: 'POST',
+                        dataType: 'json',
+                        success: function(json) {
+                            tjq('#SelectCity').empty();
+                            json.forEach(function (value) {
+                                tjq('#SelectCity').append('<option value="'+ value +'">'+ value +'</option>');
+                            });
+                            updateTraveloElementUI(tjq('#SelectCity'));
+                        }
+                    });
+                })
             })
-        })
-    </script>
-{% endblock %}
+        </script>
+    {% endblock %}
+{% endif %}
