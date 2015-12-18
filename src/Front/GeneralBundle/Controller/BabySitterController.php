@@ -36,4 +36,10 @@ class BabySitterController extends Controller
         $response->setData($array);
         return $response;
     }
+
+    public function calendarAction($slug){
+        $em = $this->getDoctrine()->getManager();
+        $babysitter = $em->getRepository('BackUserBundle:BabySitter')->findOneBySlug($slug);
+        return $this->render('FrontGeneralBundle:BabySitter:calendar.html.twig', array('babysitter' => $babysitter, 'age' => $babysitter->getBirthday()->diff(new \DateTime())->y));
+    }
 }

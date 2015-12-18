@@ -1,0 +1,142 @@
+{% extends "FrontGeneralBundle:BabySitter/Profile:profile.html.twig" %}
+{% block title %}{{ babysitter }}{% endblock %}
+{% block breadcrumbs %}
+    {{ parent() }}
+    <li class="active">Calendar</li>
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div id="main">
+            <div class="row">
+                <div id="main" class="col-md-9">
+                    <div class="tab-container style1" id="hotel-main-content">
+                        <div id="calendar-tab">
+                            {#<label>SELECT MONTH</label>
+                            <div class="col-sm-6 col-md-4 no-float no-padding">
+                                <div class="selector">
+                                    <select class="full-width" id="select-month">
+                                        {% for i in 1..'now'|date('n') %}
+                                            <option value="{{ 'now'|date('Y')~"-"~i }}" {% if 'now'|date('n')==i %}selected{% endif %}>{{ getNameMonth(i)~" "~'now'|date('Y') }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>#}
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="calendar"></div>
+                                    <div class="calendar-legend">
+                                        <label class="available">available</label>
+                                        <label class="unavailable">unavailable</label>
+                                        <label class="past">past</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <p class="description">
+                                        The calendar is updated every five minutes and is only an approximation of availability.
+                                        <br /><br />
+                                        Some hosts set custom pricing for certain days on their calendar, like weekends or holidays. The rates listed are per day and do not include any cleaning fee or rates for extra people the host may have for this listing. Please refer to the listing's Description tab for more details.
+                                        <br /><br />
+                                        We suggest that you contact the host to confirm availability and rates before submitting a reservation request.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% include 'FrontGeneralBundle:BabySitter/Profile:siderbar.html.twig' %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .table-cell label {
+            width: 200px !important;
+        }
+    </style>
+{% endblock %}
+{% block jquery %}
+    <script type="text/javascript">
+        tjq(document).ready(function () {
+            tjq('.day').live('click',function(){
+                var day=tjq(this).data('day');
+                alert(day);
+            });
+
+
+
+
+            tjq(this).find('.disponibility td').each (function () {
+                tjq(this).css('text-align', 'center');
+                if (tjq(this).html() == 1)
+                {
+                    tjq(this).addClass('success');
+                    tjq(this).html('<i class="soap-icon-check"></i>');
+                }
+                else
+                {
+                    tjq(this).addClass('danger');
+                    tjq(this).html('<i class="soap-icon-close"></i>');
+                }
+            });
+            // calendar panel
+            var cal = new Calendar();
+            var unavailable_days = [ 16,21, 22, 24, 25, 26, 27, 28, 29, 30, 31];
+            var price_arr = {
+                3: '$170',
+                4: '$170',
+                5: '$170',
+                6: '$170',
+                7: '$170',
+                8: '$170',
+                9: '$170',
+                10: '$170',
+                11: '$170',
+                12: '$170',
+                13: '$170',
+                14: '$170',
+                15: '$170',
+                16: '$250',
+                23: '$170/hour'
+            };
+
+            var current_date = new Date();
+            var current_year_month = (1900 + current_date.getYear()) + "-" + (current_date.getMonth() + 1);
+            tjq("#select-month").find("[value='" + current_year_month + "']").prop("selected", "selected");
+            cal.generateHTML(current_date.getMonth(), (1900 + current_date.getYear()), unavailable_days, price_arr);
+            tjq(".calendar").html(cal.getHTML());
+
+            tjq("#select-month").change(function () {
+                var selected_year_month = tjq("#select-month option:selected").val();
+                var year = parseInt(selected_year_month.split("-")[0], 10);
+                var month = parseInt(selected_year_month.split("-")[1], 10);
+                cal.generateHTML(month - 1, year, unavailable_days, price_arr);
+                tjq(".calendar").html(cal.getHTML());
+            });
+
+
+            tjq(".goto-writereview-pane").click(function (e) {
+                e.preventDefault();
+                tjq('#hotel-features .tabs a[href="#hotel-write-review"]').tab('show')
+            });
+        });
+        tjq(".travelo-google-map").gmap3({
+            map: {
+                options: {
+                    center: [{{ babysitter.latitude }}, {{ babysitter.longitude }}],
+                    zoom: 14
+                }
+            },
+            marker: {
+                values: [
+                    {latLng: [{{ babysitter.latitude }}, {{ babysitter.longitude }}], data: "{{ babysitter.address }}"}
+
+                ],
+                options: {
+                    draggable: false
+                },
+            }
+        });
+    </script>
+{% endblock %}

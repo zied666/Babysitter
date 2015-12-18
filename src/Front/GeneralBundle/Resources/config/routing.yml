@@ -32,6 +32,11 @@ front_babysitter_profile:
     defaults: { _controller: FrontGeneralBundle:BabySitter:babysiter,page:1 }
 
 
+front_babysitter_calendar:
+    path:     /babysitter/calendar/{slug}
+    defaults: { _controller: FrontGeneralBundle:BabySitter:calendar }
+
+
 front_ajax_country_to_city:
     path:     /front_ajax_country_to_city
     defaults: { _controller: FrontGeneralBundle:BabySitter:ajaxCountryToCity }

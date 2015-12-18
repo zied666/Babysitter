@@ -17,18 +17,18 @@
                     <i class="soap-icon-user  black-colo"></i><span class="fourty-space">{{ age }} years old</span>
                 </small>
                 <small>
-                    <i class="soap-icon-skype  blue-color"></i><span class="fourty-space">{{ babysitter.skype }}</span>
+                    <i class="soap-icon-skype  blue-color"></i><span class="fourty-space"><span class="bg-danger">Private</span></span>
                 </small>
                 <small>
-                    <i class="soap-icon-phone  red-color"></i><span class="fourty-space">{{ babysitter.phoneNumber }}</span>
+                    <i class="soap-icon-phone  red-color"></i><span class="fourty-space"><span class="bg-danger">Private</span></span>
                 </small>
                 <small>
-                    <i class="soap-icon-generalmessage  red-color"></i><span class="fourty-space">{{ babysitter.email }}</span>
+                    <i class="soap-icon-generalmessage  red-color"></i><span class="fourty-space"><span class="bg-danger">Private</span></span>
                 </small>
             </h2>
             <p class="description">{{ babysitter.address }}</p>
-
-            <div id="map-tab" class="tab-pane fade in active travelo-google-map"></div>
+            <a href="{{ path('front_babysitter_calendar',{'slug':babysitter.slug}) }}" class="button yellow full-width uppercase btn-small">Show Calendar & booking</a>
+            <div id="map-tab" class="tab-pane fade in active travelo-google-map" style="margin-top: 30px;"></div>
             <br>
             <ul class="social-icons clearfix">
                 {% if babysitter.facebook  is not null %}

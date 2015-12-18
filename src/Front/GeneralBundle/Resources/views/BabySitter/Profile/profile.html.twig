@@ -2,7 +2,9 @@
 {% block title %}{{ babysitter }}{% endblock %}
 {% block breadcrumbs %}
     {{ parent() }}
-    <li class="active">{{ babysitter }}</li>
+    <li {% if app.request.get('_route')=="front_babysitter_profile" %}class="active"{% endif %}>
+        <a href="{{ path('front_babysitter_profile',{"slug":app.request.get('slug')}) }}" >{{ babysitter }}</a>
+    </li>
 {% endblock %}
 {% block body %}
     <div class="container">
@@ -67,8 +69,8 @@
                                         <ul>
                                             <li><label>Name:</label>{{ babysitter }}</li>
                                             <li><label>Gender:</label>{{ babysitter.gender }}</li>
-                                            <li><label>Phone:</label>{{ babysitter.phoneNumber }}</li>
                                             <li><label>Birthday:</label>{{ babysitter.birthday|date('d/m/Y') }} ({{ age }})</li>
+                                            <li><label>Education:</label>{{ babysitter.education }}</li>
                                             <li><label>Religion:</label>{{ babysitter.religion }}</li>
                                             <li><label>Country:</label>{{ babysitter.country }}</li>
                                             <li><label>City:</label>{{ babysitter.city }}</li>
@@ -79,7 +81,6 @@
                                     <div class="col-sm-5 col-lg-6 features table-cell" style="padding-left: 10px;padding-right: 10px;">
                                         <ul>
                                             <li><label>Languages:</label>{{ babysitter.languages|join(', ') }}</li>
-                                            <li><label>Education:</label>{{ babysitter.education }}</li>
                                             <li><label>Years Experiance:</label>{{ babysitter.yearsExperiance }}</li>
                                             <li><label>N° of kids able to carry:</label>{{ babysitter.kidsAbleCarry }}
                                             </li>

@@ -72,7 +72,7 @@ function Calendar() {
             if (i < thisDay || $.inArray(i, notAvailableDays) !== -1) {
                 html += "<td class='" + className + "'><span>" + i + "</span></td>";
             } else {
-                html += "<td class='" + className + "'><a href='#'>" + i + priceText + "</a></td>";
+                html += "<td class='" + className + "'><a href='javascript:void(0)' class='day' data-day='"+i+"'>" + i + priceText + "</a></td>";
             }
             
             column++;
@@ -81,7 +81,7 @@ function Calendar() {
                 column = 0;
             }
         }
-    
+
         /*if (column > 0) {
             for ( i = 1; column < 7; i++) {
                 html += "<td class='next-month'>" + i + "</td>";

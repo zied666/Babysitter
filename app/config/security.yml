@@ -28,5 +28,6 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/babysitter/calendar/, role: ROLE_USER }
         - { path: ^/parents_space/, role: ROLE_PARRENT }
         - { path: ^/baby_sitter_space/, role: ROLE_BABYSITTER }

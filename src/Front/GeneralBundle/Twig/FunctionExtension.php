@@ -15,17 +15,26 @@ class FunctionExtension extends \Twig_Extension
         return array(
             'getCountries'=>new \Twig_Function_Method($this, 'getCountries'),
             'getCities'=>new \Twig_Function_Method($this, 'getCities'),
-//            new \Twig_SimpleFilter('convertCurrency', array($this,'convertCurrency'))
+            'getNameMonth'=>new \Twig_Function_Method($this, 'getNameMonth'),
         );
     }
+
+    public function getNameMonth($monthNum)
+    {
+        $dateObj   = \DateTime::createFromFormat('!m', $monthNum);
+        return $dateObj->format('F');
+    }
+
     public function getCountries()
     {
         return $this->em->getRepository("BackUserBundle:BabySitter")->getCountries();
     }
+
     public function getCities($country='all')
     {
         return $this->em->getRepository("BackUserBundle:BabySitter")->getCities($country);
     }
+
     public function getName()
     {
         return 'FunctionExtension';
