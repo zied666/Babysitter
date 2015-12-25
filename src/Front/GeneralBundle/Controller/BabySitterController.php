@@ -2,8 +2,12 @@
 
 namespace Front\GeneralBundle\Controller;
 
+use Back\UserBundle\Entity\Booking;
+use Back\UserBundle\Entity\Calendrier;
+use Back\UserBundle\Form\BookingType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class BabySitterController extends Controller
 {
@@ -38,8 +42,63 @@ class BabySitterController extends Controller
     }
 
     public function calendarAction($slug){
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->get('doctrine.orm.entity_manager');
         $babysitter = $em->getRepository('BackUserBundle:BabySitter')->findOneBySlug($slug);
-        return $this->render('FrontGeneralBundle:BabySitter:calendar.html.twig', array('babysitter' => $babysitter, 'age' => $babysitter->getBirthday()->diff(new \DateTime())->y));
+        $calendar= $em->getRepository('BackUserBundle:Calendrier')->findOneBy(array(
+            'month'=>date('m'),
+            'year'=>date('Y'),
+            'babysitter'=>$babysitter
+        ));
+        if(!$calendar)
+        {
+            $calendar = new Calendrier($babysitter,date('Y'),date('m'));
+            $em->persist($calendar);
+            $em->flush();
+        }
+        return $this->render('FrontGeneralBundle:BabySitter:calendar.html.twig', array(
+            'calendar'=>$calendar,
+            'babysitter' => $babysitter,
+            'age' => $babysitter->getBirthday()->diff(new \DateTime())->y
+        ));
+    }
+
+    public function bookingAction($slug,$month,$year,$day,Request $request)
+    {
+        $em = $this->get('doctrine.orm.entity_manager');
+        $babysitter = $em->getRepository('BackUserBundle:BabySitter')->findOneBySlug($slug);
+        $calendar= $em->getRepository('BackUserBundle:Calendrier')->findOneBy(array(
+            'month'=>$month,
+            'year'=>$year,
+            'babysitter'=>$babysitter
+        ));
+        if(!$calendar or is_null($calendar->getPriceByDay($day)))
+        {
+            $this->addFlash('Info','This date is not available');
+            return $this->redirectToRoute('front_babysitter_calendar',array('slug'=>$slug));
+        }
+        $booking= new Booking();
+        $booking->setUser($this->getUser())
+            ->setBabysitter($babysitter)
+            ->setDateBooking(\DateTime::createFromFormat('Ymd', $year.$month.$day));
+        $form=$this->createForm(new BookingType(),$booking);
+        if($request->isMethod('POST'))
+        {
+            $form->handleRequest($request);
+            if($form->isValid())
+            {
+                $booking=$form->getData();
+                $booking->setTotal($calendar->getPriceByDay($day)*$booking->getNumberHour());
+                $em->persist($booking);
+                $em->flush();
+            }
+        }
+        return $this->render('FrontGeneralBundle:BabySitter:booking.html.twig', array(
+            'calendar'=>$calendar,
+            'babysitter' => $babysitter,
+            'age' => $babysitter->getBirthday()->diff(new \DateTime())->y,
+            'bookingDate'=>\DateTime::createFromFormat('Ymd', $year.$month.$day),
+            'form'=>$form->createView()
+        ));
+
     }
 }

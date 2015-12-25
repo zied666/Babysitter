@@ -5,3 +5,7 @@ Front_BabySitter_Profile_myprofile:
 Front_BabySitter_Profile_ajax_to_address:
     path:     /ajax_to_address
     defaults: { _controller: FrontGeneralBundle:ProfileBabySitter:ajaxToAddress }
+
+Front_BabySitter_Profile_mycalendar:
+    path:     /MyCalendar/{id}
+    defaults: { _controller: FrontGeneralBundle:ProfileBabySitter:calendar,id:null }

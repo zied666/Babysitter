@@ -10,4 +10,11 @@
             </a>
         </li>
     </ul>
+    <ul class="sub-menu">
+        <li {% if app.request.get('_route')in ['back_administration_paypal'] %} class="open"{% endif %}>
+            <a href="{{ path('back_administration_paypal') }}">
+                <span class="title">Paypal</span>
+            </a>
+        </li>
+    </ul>
 </li>

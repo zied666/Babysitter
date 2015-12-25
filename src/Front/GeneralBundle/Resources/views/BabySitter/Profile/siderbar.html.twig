@@ -1,6 +1,14 @@
 <div class="sidebar col-md-3">
+    {% if app.request.get('_route')=='front_babysitter_booking' %}
+        <div class="travelo-box contact-box booking-details">
+            <dl class="other-details">
+                <dt style="border-top: none;" class="total-price">Date:</dt><dd style="border-top: none;" class="total-price-value">{{ bookingDate|date('d F Y') }}</dd>
+                <dt style="border-top: none;" class="total-price">Price</dt><dd style="border-top: none;" class="total-price-value">{{ calendar.priceByDay(app.request.get('day')) }}$ /Hour</dd>
+            </dl>
+        </div>
+    {% endif %}
     <article class="detailed-logo">
-        <figure>
+        <figure style="padding: 0;">
             {% if babysitter.path is null %}
                 <img src="https://placeholdit.imgix.net/~text?txtsize=25&txt=No%20Picture%20available&w=240&h=125"/>
             {% else %}
@@ -27,7 +35,9 @@
                 </small>
             </h2>
             <p class="description">{{ babysitter.address }}</p>
-            <a href="{{ path('front_babysitter_calendar',{'slug':babysitter.slug}) }}" class="button yellow full-width uppercase btn-small">Show Calendar & booking</a>
+            {% if app.request.get('_route')=="front_babysitter_profile" %}
+                <a href="{{ path('front_babysitter_calendar',{'slug':babysitter.slug}) }}" class="button yellow full-width uppercase btn-small">Show Calendar & booking</a>
+            {% endif %}
             <div id="map-tab" class="tab-pane fade in active travelo-google-map" style="margin-top: 30px;"></div>
             <br>
             <ul class="social-icons clearfix">

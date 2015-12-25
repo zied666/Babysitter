@@ -1,3 +1,6 @@
+back_administration_paypal:
+    path:     /admins/paypal
+    defaults: { _controller: BackAdministrationBundle:Administration:paypal }
 back_administration_admins:
     path:     /admins/{id}
     defaults: { _controller: BackAdministrationBundle:Administration:admins,id:null }

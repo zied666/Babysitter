@@ -3,7 +3,9 @@
 namespace Front\GeneralBundle\Controller;
 
 use Back\UserBundle\Entity\BabySitter;
+use Back\UserBundle\Entity\Calendrier;
 use Back\UserBundle\Form\BabySitterType;
+use Back\UserBundle\Form\CalendrierType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -51,5 +53,44 @@ class ProfileBabySitterController extends Controller
 
         ));
         return $response;
+    }
+
+    public function calendarAction($id)
+    {
+        $em=$this->get('doctrine.orm.entity_manager');
+        $session=$this->get('session');
+        $request=$this->get('request');
+        $user=$this->getUser();
+        if(!is_null($id))
+            $calendrier=$em->find('BackUserBundle:Calendrier',$id);
+        else
+            $calendrier=new Calendrier();
+        $calendriers=$em->getRepository('BackUserBundle:Calendrier')->findBy(array('babysitter'=>$user->getBabysitter()),array('year'=>"desc",'month'=>"desc"));
+        $form=$this->createForm(new CalendrierType(),$calendrier);
+        if($request->isMethod('POST'))
+        {
+            $form->handleRequest($request);
+            if($form->isValid())
+            {
+                $calendrier=$form->getData();
+                $verif=$em->getRepository('BackUserBundle:Calendrier')->findOneBy(array(
+                    'month'=>$calendrier->getMonth(),
+                    'year'=>$calendrier->getYear(),
+                ));
+                if($verif and is_null($id))
+                {
+                    $this->addFlash("danger","You have already entered this date");
+                    return $this->redirectToRoute("Front_BabySitter_Profile_mycalendar");
+                }
+                $em->persist($calendrier->setBabysitter($user->getBabysitter()));
+                $em->flush();
+                $this->addFlash("success","success");
+                return $this->redirectToRoute("Front_BabySitter_Profile_mycalendar");
+            }
+        }
+        return $this->render('FrontGeneralBundle:ProfileBabySitter:MyCalendar.html.twig',array(
+            'form'=>$form->createView(),
+            'calendars'=>$calendriers
+        ));
     }
 }

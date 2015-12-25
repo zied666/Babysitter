@@ -2,7 +2,9 @@
 {% block title %}{{ babysitter }}{% endblock %}
 {% block breadcrumbs %}
     {{ parent() }}
-    <li class="active">Calendar</li>
+    <li {% if app.request.get('_route')=="front_babysitter_calendar" %}class="active"{% endif %}>
+        <a href="{{ path('front_babysitter_calendar',{"slug":app.request.get('slug')}) }}" >Calendar</a>
+    </li>
 {% endblock %}
 {% block body %}
     <div class="container">
@@ -40,6 +42,41 @@
                                     </p>
                                 </div>
                             </div>
+                            {% if babysitter.disponibility is not null %}
+                                <div class="row long-description">
+                                    <h2>Disponiblity</h2>
+                                    <div class="col-md-12">
+                                        <table class="table table-condensed disponibility" style="background-color: whitesmoke;">
+                                            <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th style="text-align: center;">Monday</th>
+                                                <th style="text-align: center;">Tuesday</th>
+                                                <th style="text-align: center;">Wednesday</th>
+                                                <th style="text-align: center;">Thursday</th>
+                                                <th style="text-align: center;">Friday</th>
+                                                <th style="text-align: center;">Saturday</th>
+                                                <th style="text-align: center;">Sunday</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for i in 1..4 %}
+                                                <tr>
+                                                    <th>{% if i==1 %}Morning{% elseif i==2 %}Midday{% elseif i==3 %}Afternon{% else %}Night{% endif %}</th>
+                                                    <td>{{ babysitter.disponibility.getValue('lundi',i) }}</td>
+                                                    <td>{{ babysitter.disponibility.getValue('mardi',i) }}</td>
+                                                    <td>{{ babysitter.disponibility.getValue('mercredi',i) }}</td>
+                                                    <td>{{ babysitter.disponibility.getValue('jeudi',i) }}</td>
+                                                    <td>{{ babysitter.disponibility.getValue('vendredi',i) }}</td>
+                                                    <td>{{ babysitter.disponibility.getValue('samedi',i) }}</td>
+                                                    <td>{{ babysitter.disponibility.getValue('dimanche',i) }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -60,8 +97,7 @@
     <script type="text/javascript">
         tjq(document).ready(function () {
             tjq('.day').live('click',function(){
-                var day=tjq(this).data('day');
-                alert(day);
+                window.document.location = "{{ app.request.requestUri }}/{{ 'now'|date('Y/m/') }}"+tjq(this).data('day');
             });
 
 
@@ -82,24 +118,8 @@
             });
             // calendar panel
             var cal = new Calendar();
-            var unavailable_days = [ 16,21, 22, 24, 25, 26, 27, 28, 29, 30, 31];
-            var price_arr = {
-                3: '$170',
-                4: '$170',
-                5: '$170',
-                6: '$170',
-                7: '$170',
-                8: '$170',
-                9: '$170',
-                10: '$170',
-                11: '$170',
-                12: '$170',
-                13: '$170',
-                14: '$170',
-                15: '$170',
-                16: '$250',
-                23: '$170/hour'
-            };
+            var unavailable_days = [{{ calendar.unavailableDays|join(',') }}];
+            var price_arr = { {{ calendar.pricesDay|join(',')|raw }} };
 
             var current_date = new Date();
             var current_year_month = (1900 + current_date.getYear()) + "-" + (current_date.getMonth() + 1);

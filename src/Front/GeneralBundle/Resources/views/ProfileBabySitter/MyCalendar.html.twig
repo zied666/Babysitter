@@ -1,0 +1,70 @@
+{% extends ":Front:base.html.twig" %}
+{% block title %}My Calendar{% endblock %}
+{% block breadcrumbs %}
+    {{ parent() }}
+    <li class="active">My Calendar</li>
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div id="main" class="col-md-12">
+                <div class="booking-section travelo-box">
+                    {% include ':Front:alert.html.twig' %}
+                    {{ form_start(form) }}
+                    <div class="person-information booking-information">
+                        <h3 class="section-title">Month & Year</h3>
+                        <hr>
+                        <div class="row">
+                            {{ formulaire.input("col-md-3","Year",form.year,true) }}
+                            {{ formulaire.input("col-md-3","Month",form.month,true) }}
+                        </div>
+                        <h3 class="section-title">Price per day
+                            <small>if you are not available at a day, let the empty input</small>
+                        </h3>
+                        <hr>
+                        <div class="row">
+                            {% for i in 1..31 %}
+                                {{ formulaire.input("col-md-2","Day "~i ,form['day'~i],true) }}
+                            {% endfor %}
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-4">
+                                <button class="btn btn-primary btn-block" type="submit">
+                                    Update my calendar <i class="fa fa-arrow-circle-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div id="main" class="col-md-12">
+                <div class="travelo-box">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Month</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for calendar in calendars %}
+                            <tr>
+                                <td>{{ calendar.year }}</td>
+                                <td>{{ getNameMonth(calendar.month) }}</td>
+                                <td>
+                                    {{ macros.tableEdit(path('Front_BabySitter_Profile_mycalendar',{'id':calendar.id})) }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

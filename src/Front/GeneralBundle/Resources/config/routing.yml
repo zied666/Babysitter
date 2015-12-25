@@ -37,6 +37,11 @@ front_babysitter_calendar:
     defaults: { _controller: FrontGeneralBundle:BabySitter:calendar }
 
 
+front_babysitter_booking:
+    path:     /babysitter/calendar/{slug}/{year}/{month}/{day}
+    defaults: { _controller: FrontGeneralBundle:BabySitter:booking }
+
+
 front_ajax_country_to_city:
     path:     /front_ajax_country_to_city
     defaults: { _controller: FrontGeneralBundle:BabySitter:ajaxCountryToCity }
