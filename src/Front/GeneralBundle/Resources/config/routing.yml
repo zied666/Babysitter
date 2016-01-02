@@ -37,6 +37,11 @@ front_babysitter_calendar:
     defaults: { _controller: FrontGeneralBundle:BabySitter:calendar }
 
 
+front_babysitter_sendToPaipal:
+    path:     /babysitter/sendToPaipal/{id}
+    defaults: { _controller: FrontGeneralBundle:BabySitter:sendToPaipal }
+
+
 front_babysitter_booking:
     path:     /babysitter/calendar/{slug}/{year}/{month}/{day}
     defaults: { _controller: FrontGeneralBundle:BabySitter:booking }
@@ -45,3 +50,22 @@ front_babysitter_booking:
 front_ajax_country_to_city:
     path:     /front_ajax_country_to_city
     defaults: { _controller: FrontGeneralBundle:BabySitter:ajaxCountryToCity }
+
+
+front_babysitter_sendToPaipal_notify:
+    path:     /notify
+    defaults: { _controller: FrontGeneralBundle:BabySitter:paypalNotify }
+
+
+front_babysitter_sendToPaipal_ok:
+    path:     /success
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: 'FrontGeneralBundle::succes.html.twig'
+
+
+front_babysitter_sendToPaipal_ko:
+    path:     /echec
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: 'FrontGeneralBundle::echec.html.twig'

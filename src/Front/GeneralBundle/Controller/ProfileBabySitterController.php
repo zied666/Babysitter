@@ -3,11 +3,13 @@
 namespace Front\GeneralBundle\Controller;
 
 use Back\UserBundle\Entity\BabySitter;
+use Back\UserBundle\Entity\Booking;
 use Back\UserBundle\Entity\Calendrier;
 use Back\UserBundle\Form\BabySitterType;
 use Back\UserBundle\Form\CalendrierType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class ProfileBabySitterController extends Controller
 {
@@ -55,11 +57,10 @@ class ProfileBabySitterController extends Controller
         return $response;
     }
 
-    public function calendarAction($id)
+    public function calendarAction($id,Request $request)
     {
         $em=$this->get('doctrine.orm.entity_manager');
         $session=$this->get('session');
-        $request=$this->get('request');
         $user=$this->getUser();
         if(!is_null($id))
             $calendrier=$em->find('BackUserBundle:Calendrier',$id);
@@ -93,4 +94,29 @@ class ProfileBabySitterController extends Controller
             'calendars'=>$calendriers
         ));
     }
+
+    public function listBookingAction($page)
+    {
+        $em=$this->get('doctrine.orm.entity_manager');
+        $user=$this->getUser();
+        $booking=$em->getRepository('BackUserBundle:Booking')->findBy(array('babysitter'=>$user->getBabysitter()),array('id'=>'desc'));
+        $bookings = $this->get('knp_paginator')->paginate($booking,$page,20);
+        return $this->render('FrontGeneralBundle:ProfileBabySitter:listBooking.html.twig',array(
+            'bookings'=>$bookings
+        ));
+    }
+
+    public function validateAction(Booking $booking)
+    {
+        $em=$this->get('doctrine.orm.entity_manager');
+        if($booking->getUser()->getId()==$this->getUser()->getId())
+        {
+            $booking->setStatus(3);
+            $em->persist($booking);
+            $em->flush();
+            $this->addFlash('success','success');
+        }
+        return $this->redirectToRoute('Front_BabySitter_Profile_listBooking');
+    }
+
 }

@@ -29,6 +29,7 @@
                         <ul class="menu mini">
                             <li {% if app.request.get('_route')=='Front_BabySitter_Profile_myprofile' %}class="active"{% endif %}><a href="{{ path('Front_BabySitter_Profile_myprofile') }}">My Profile</a></li>
                             <li {% if app.request.get('_route')=='Front_BabySitter_Profile_mycalendar' %}class="active"{% endif %}><a href="{{ path('Front_BabySitter_Profile_mycalendar') }}">My Calendar</a></li>
+                            <li {% if app.request.get('_route')=='Front_BabySitter_Profile_listBooking' %}class="active"{% endif %}><a href="{{ path('Front_BabySitter_Profile_listBooking') }}">List booking</a></li>
                         </ul>
                     </li>
                 {% endif %}

@@ -9,3 +9,11 @@ Front_BabySitter_Profile_ajax_to_address:
 Front_BabySitter_Profile_mycalendar:
     path:     /MyCalendar/{id}
     defaults: { _controller: FrontGeneralBundle:ProfileBabySitter:calendar,id:null }
+
+Front_BabySitter_Profile_listBooking:
+    path:     /listBooking/{page}
+    defaults: { _controller: FrontGeneralBundle:ProfileBabySitter:listBooking,page:1 }
+
+Front_BabySitter_Profile_validate:
+    path:     /listBooking_validate/{id}
+    defaults: { _controller: FrontGeneralBundle:ProfileBabySitter:validate}

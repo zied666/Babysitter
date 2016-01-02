@@ -264,6 +264,18 @@ class Calendrier
         $this->month=$month;
     }
 
+    /**
+     * @param int $id
+     * @return Calendrier
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+
+
 
     /**
      * Get id

@@ -16,7 +16,13 @@ class BookingType extends AbstractType
     {
         $builder
             ->add('hour')
-            ->add('numberHour')
+            ->add('numberHour','integer',array(
+                'data'=>1
+            ))
+            ->add('description','textarea')
+            ->add('address')
+            ->add('tel')
+            ->add('name')
         ;
     }
     

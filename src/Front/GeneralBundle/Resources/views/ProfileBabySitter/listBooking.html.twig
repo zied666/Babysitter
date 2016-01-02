@@ -1,0 +1,53 @@
+{% extends ":Front:base.html.twig" %}
+{% block title %}My list{% endblock %}
+{% block breadcrumbs %}
+    {{ parent() }}
+    <li class="active">List booking</li>
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div id="main" class="col-md-12">
+                <div class="travelo-box">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>Date of booking</th>
+                            <th>Number of hours</th>
+                            <th>Customer</th>
+                            <th>Tel</th>
+                            <th>Address</th>
+                            <th>Total</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for booking in bookings %}
+                            <tr>
+                                <td>{{ booking.showStatus }}</td>
+                                <td>{{ booking.dateBooking|date('d F Y') }}, {{ booking.hour|date('H:i') }}</td>
+                                <td>{{ booking.numberHour }} hours</td>
+                                <td>{{ booking.name }}</td>
+                                <td>{{ booking.tel }}</td>
+                                <td>{{ booking.address }}</td>
+                                <td>{{ booking.total }} $</td>
+                                <td>{{ booking.description }}</td>
+                                <td>
+                                    {% if booking.status==2 %}
+                                        {{ macros.tableEdit(path('Front_BabySitter_Profile_validate',{'id':booking.id})) }}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="navigation">
+                        {{ knp_pagination_render(bookings) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

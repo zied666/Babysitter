@@ -31,6 +31,9 @@ class Booking
 
     /**
      * @var integer
+     * 1:not payed
+     * 2:payed
+     * 3:validated
      *
      * @ORM\Column(name="status", type="integer")
      */
@@ -45,10 +48,38 @@ class Booking
 
     /**
      * @var integer
-     * @Assert\Range(min = 1,max = 6)
+     * @Assert\Range(min = 1,max = 100)
      * @ORM\Column(name="numberHour", type="integer")
      */
     private $numberHour;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255)
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tel", type="string", length=255)
+     */
+    private $tel;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="address", type="string", length=255)
+     */
+    private $address;
 
     /**
      * @var \DateTime
@@ -332,4 +363,89 @@ class Booking
     {
         return $this->babysitter;
     }
+
+
+    public function showStatus()
+    {
+        switch($this->status)
+        {
+            case 1 : return "Not paid";
+            case 2 : return "Paid";
+            case 3 : return "Validated";
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     * @return Booking
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTel()
+    {
+        return $this->tel;
+    }
+
+    /**
+     * @param string $tel
+     * @return Booking
+     */
+    public function setTel($tel)
+    {
+        $this->tel = $tel;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param string $address
+     * @return Booking
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * @return Booking
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+
 }
