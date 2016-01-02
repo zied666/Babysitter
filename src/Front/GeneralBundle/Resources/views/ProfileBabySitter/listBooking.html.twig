@@ -6,6 +6,7 @@
 {% endblock %}
 {% block body %}
     <div class="container">
+        {% include ':Front:alert.html.twig' %}
         <div class="row">
             <div id="main" class="col-md-12">
                 <div class="travelo-box">
@@ -36,7 +37,7 @@
                                 <td>{{ booking.description }}</td>
                                 <td>
                                     {% if booking.status==2 %}
-                                        {{ macros.tableEdit(path('Front_BabySitter_Profile_validate',{'id':booking.id})) }}
+                                        {{ macros.tableValide(path('Front_BabySitter_Profile_validate',{'id':booking.id})) }}
                                     {% endif %}
                                 </td>
                             </tr>
