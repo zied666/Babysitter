@@ -79,6 +79,7 @@ class BabySitterController extends Controller
         $booking= new Booking();
         $booking->setUser($this->getUser())
             ->setBabysitter($babysitter)
+            ->setName($this->getUser()->getFirstName().' '.$this->getUser()->getLastName())
             ->setDateBooking(\DateTime::createFromFormat('Ymd', $year.$month.$day));
         $form=$this->createForm(new BookingType(),$booking);
         if($request->isMethod('POST'))
