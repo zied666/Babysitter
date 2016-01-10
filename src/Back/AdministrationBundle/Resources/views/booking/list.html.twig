@@ -52,7 +52,7 @@
                             <tr>
                                 <td>{{ booking.babysitter }}</td>
                                 <td>
-                                    {% if booking.status==1 %}
+                                    {% if booking.status<1 %}
                                         <a href="#Paypal" class="paypal" data-id="{{ booking.id }}" data-toggle="modal">{{ booking.showStatus }}</a>
                                     {% else %}
                                         {{ booking.showStatus }}
