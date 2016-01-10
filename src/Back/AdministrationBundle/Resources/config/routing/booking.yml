@@ -1,0 +1,7 @@
+back_booking_list:
+    path:     /list/{page}/{status}
+    defaults: { _controller: BackAdministrationBundle:Booking:list,page:1,status:null }
+
+back_booking_ajax_paypal:
+    path:     /back_booking_ajax_paypal
+    defaults: { _controller: BackAdministrationBundle:Booking:ajaxPaypal }

@@ -12,7 +12,7 @@ class DefaultController extends Controller
         $countBabysitter=count($users=$em->getRepository('BackUserBundle:User')->findBabySitter());
         $countAdmin=$em->getRepository('BackUserBundle:User')->countByRole(array('ROLE_ADMIN'));
         $countParent=$em->getRepository('BackUserBundle:User')->countByRole(array('ROLE_PARRENT'));
-        return $this->render('BackAdministrationBundle:Default:index.html.twig',array(
+        return $this->render('BackAdministrationBundle::dashboard.html.twig',array(
             'countAdmin'=>$countAdmin,
             'countBabysitter'=>$countBabysitter,
             'countParent'=>$countParent,
