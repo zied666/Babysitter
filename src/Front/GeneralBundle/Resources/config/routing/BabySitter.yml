@@ -17,3 +17,7 @@ Front_BabySitter_Profile_listBooking:
 Front_BabySitter_Profile_validate:
     path:     /listBooking_validate/{id}
     defaults: { _controller: FrontGeneralBundle:ProfileBabySitter:validate}
+
+Front_BabySitter_Profile_cancel:
+    path:     /listBooking_cancel/{id}
+    defaults: { _controller: FrontGeneralBundle:ProfileBabySitter:cancel}

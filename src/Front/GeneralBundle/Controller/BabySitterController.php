@@ -159,6 +159,7 @@ class BabySitterController extends Controller
                                 $booking->setPaypalData($_POST);
                                 $em->persist($booking);
                                 $em->flush();
+                                $this->get('mailerservice')->sendBookingPaid($booking);
                             } else {
 
                             }

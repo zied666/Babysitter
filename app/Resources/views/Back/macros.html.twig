@@ -38,6 +38,10 @@
     <a href="{{ path }}" class="btn btn-xs btn-green tooltips" data-placement="top" data-original-title="Validate" onclick="javascript:return(confirm('Are you sure you want to do this action?'))"><i class="fa fa-check-square"></i></a>
 {% endmacro %}
 
+{% macro tableCancel(path) %}
+    <a href="{{ path }}" class="btn btn-xs btn-teal tooltips" data-placement="top" data-original-title="Cancel" onclick="javascript:return(confirm('Are you sure you want to do this action?'))"><i class="fa  fa-ban"></i></a>
+{% endmacro %}
+
 {% macro tablePhoto(path) %}
     <a href="{{ path }}" class="btn btn-xs btn-teal tooltips" data-placement="top" data-original-title="Photos"><i class="fa fa-camera"></i></a>
 {% endmacro %}

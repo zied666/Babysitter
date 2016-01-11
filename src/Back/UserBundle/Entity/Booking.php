@@ -34,6 +34,7 @@ class Booking
      * 1:not payed
      * 2:payed
      * 3:validated
+     * 4:canceled
      *
      * @ORM\Column(name="status", type="integer")
      */
@@ -372,6 +373,7 @@ class Booking
             case 1 : return "Not paid";
             case 2 : return "Paid";
             case 3 : return "Validated";
+            case 4 : return "Canceled";
         }
     }
 

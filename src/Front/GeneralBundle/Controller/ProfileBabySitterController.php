@@ -60,7 +60,6 @@ class ProfileBabySitterController extends Controller
     public function calendarAction($id,Request $request)
     {
         $em=$this->get('doctrine.orm.entity_manager');
-        $session=$this->get('session');
         $user=$this->getUser();
         if(!is_null($id))
             $calendrier=$em->find('BackUserBundle:Calendrier',$id);
@@ -114,6 +113,21 @@ class ProfileBabySitterController extends Controller
             $booking->setStatus(3);
             $em->persist($booking);
             $em->flush();
+            $this->get('mailerservice')->sendBookingValidated($booking);
+            $this->addFlash('success','success');
+        }
+        return $this->redirectToRoute('Front_BabySitter_Profile_listBooking');
+    }
+
+    public function cancelAction(Booking $booking)
+    {
+        $em=$this->get('doctrine.orm.entity_manager');
+        if($booking->getUser()->getId()==$this->getUser()->getId())
+        {
+            $booking->setStatus(4);
+            $em->persist($booking);
+            $em->flush();
+            $this->get('mailerservice')->sendBookingCanceled($booking);
             $this->addFlash('success','success');
         }
         return $this->redirectToRoute('Front_BabySitter_Profile_listBooking');

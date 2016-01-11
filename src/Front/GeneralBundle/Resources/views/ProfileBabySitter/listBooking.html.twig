@@ -38,6 +38,7 @@
                                 <td>
                                     {% if booking.status==2 %}
                                         {{ macros.tableValide(path('Front_BabySitter_Profile_validate',{'id':booking.id})) }}
+                                        {{ macros.tableCancel(path('Front_BabySitter_Profile_cancel',{'id':booking.id})) }}
                                     {% endif %}
                                 </td>
                             </tr>
