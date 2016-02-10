@@ -67,9 +67,9 @@
                     {% if is_granted('ROLE_ADMIN') %}
                         <li><a target="_blank" href="{{ path('back_administration_homepage') }}">BackOffice</a></li>
                     {% endif %}
-                    {% if is_granted('ROLE_PARRENT') %}
-                        <li><a target="_blank" href="{{ path('back_administration_homepage') }}">PARRENT</a></li>
-                    {% endif %}
+                    {#{% if is_granted('ROLE_PARRENT') %}
+                        <li><a target="_blank" href="{{ path('fos_user_profile_show') }}">PARRENT</a></li>
+                    {% endif %}#}
                     {% if is_granted('ROLE_BABYSITTER') %}
                         <li class="ribbon language menu-color-skin">
                             <a href="#">BabySitter Space</a>

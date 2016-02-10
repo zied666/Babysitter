@@ -13,11 +13,10 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ProfileBabySitterController extends Controller
 {
-    public function profileAction()
+    public function profileAction(Request $request)
     {
         $em=$this->getDoctrine()->getManager();
-        $session=$this->getRequest()->getSession();
-        $user = $this->container->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
         if(!is_null($user->getBabySitter()))
             $babysitter=$user->getBabySitter();
         else
@@ -26,9 +25,9 @@ class ProfileBabySitterController extends Controller
             $babysitter->setLastName($user->getLastName())->setFirstName($user->getFirstName())->setEmail($user->getEmail());
         }
         $form=$this->createForm(new BabySitterType(),$babysitter);
-        if($this->getRequest()->isMethod('POST'))
+        if($request->isMethod('POST'))
         {
-            $form->submit($this->getRequest());
+            $form->submit($request);
             if($form->isValid())
             {
                 $babysitter=$form->getData();

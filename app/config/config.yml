@@ -84,8 +84,10 @@ swiftmailer:
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     registration:
-            form:
-                type: app_user_registration
+        confirmation:
+            enabled: true
+        form:
+            type: app_user_registration
     firewall_name: main
     user_class: Back\UserBundle\Entity\User
 
