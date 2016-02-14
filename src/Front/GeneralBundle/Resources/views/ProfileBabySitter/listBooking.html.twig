@@ -51,5 +51,56 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div id='calendar'></div>
+            </div>
+        </div>
     </div>
+{% endblock %}
+{% block jquery %}
+    <script>
+
+        tjq(document).ready(function() {
+
+            tjq('#calendar').fullCalendar({
+                height: 400,
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                defaultDate: '{{ 'now'|date('Y-m-d') }}',
+                editable: false,
+                eventLimit: false,
+                events: [
+                    {% for booking in validatedBookings %}
+                    {
+                        id: {{ booking.id }},
+                        title: '{{ booking.user }} ({{ booking.numberHour }} hours)',
+                        start: '{{ booking.dateBooking|date('Y-m-d') }}T{{ booking.hour|date('H:i:s') }}',
+                    },
+                    {% endfor %}
+                ],
+            });
+
+        });
+
+    </script>
+
+    <script type='text/javascript'>
+
+        tjq(document).ready(function() {
+            tjq('#calendar').fullCalendar({
+                googleCalendarApiKey: 'AIzaSyDoEiBHZz5lphh2FuPWsm872BIZ6nPP1nM',
+                events: {
+                    googleCalendarId: 'zied.kharraz@gmail.com'
+                }
+            });
+        });
+
+    </script>
+
+
+
 {% endblock %}
